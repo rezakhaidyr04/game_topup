@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Game TopUp</title>
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600,700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -15,58 +16,83 @@
         }
 
         body {
-            font-family: 'Figtree', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #2d1b69 50%, #0f172a 100%);
-            background-attachment: fixed;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0F172A 0%, #020617 100%);
+            color: #F8FAFC;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            line-height: 1.6;
+            padding: 2rem;
         }
 
         .container {
-            max-width: 450px;
+            max-width: 560px;
             width: 100%;
+            padding: 20px;
         }
 
         .card {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(45, 27, 105, 0.6) 100%);
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(236, 72, 153, 0.15);
+            background: linear-gradient(180deg, #111827 0%, #0b1220 100%);
+            border: 1px solid rgba(51,65,85,0.6);
+            border-radius: 16px;
+            padding: 56px;
+            box-shadow: 0 20px 50px rgba(2, 6, 23, 0.6);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 30px 70px rgba(2, 6, 23, 0.75);
+        }
+
+        .brand {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            justify-content: center;
+            color: #38BDF8;
+            margin-bottom: 12px;
+            font-weight: 700;
+            font-size: 1.2rem;
         }
 
         .logo {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 2.5rem;
+            font-size: 2.4rem;
+            color: #38BDF8;
+            display:flex;
+            justify-content:center;
+            margin-bottom: 12px;
         }
 
         h1 {
-            color: #e2e8f0;
-            font-size: 28px;
-            margin-bottom: 10px;
+            color: #F8FAFC;
+            font-size: 36px;
+            margin-bottom: 6px;
             text-align: center;
+            font-weight: 800;
         }
 
         .subtitle {
-            color: #94a3b8;
+            color: #94A3B8;
             text-align: center;
-            margin-bottom: 30px;
-            font-size: 14px;
+            margin-bottom: 20px;
+            font-size: 15px;
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 16px;
+            position: relative;
         }
 
         label {
             display: block;
             color: #cbd5e1;
             font-weight: 600;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             font-size: 14px;
         }
 
@@ -74,85 +100,65 @@
         input[type="email"],
         input[type="password"] {
             width: 100%;
-            padding: 12px 15px;
-            background: rgba(15, 23, 42, 0.5);
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            border-radius: 8px;
-            color: #e2e8f0;
-            font-size: 14px;
-            transition: all 0.3s ease;
+            padding: 14px 16px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.06);
+            border-radius: 10px;
+            color: #F8FAFC;
+            font-size: 15px;
+            transition: all 0.25s ease;
+            box-shadow: inset 0 -6px 18px rgba(0,0,0,0.45);
         }
 
         input[type="text"]:focus,
         input[type="email"]:focus,
         input[type="password"]:focus {
             outline: none;
-            border-color: rgba(236, 72, 153, 0.5);
-            background: rgba(15, 23, 42, 0.8);
-            box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+            border-color: #38BDF8;
+            background: rgba(15, 23, 42, 0.88);
+            box-shadow: 0 8px 30px rgba(56, 189, 248, 0.12);
         }
 
         input::placeholder {
-            color: #64748b;
+            color: #94a3b8;
         }
 
         .checkbox-group {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 8px;
-            margin-bottom: 20px;
-            margin-top: 15px;
+            margin-bottom: 16px;
         }
 
         input[type="checkbox"] {
             cursor: pointer;
-            margin-top: 4px;
         }
 
         .checkbox-label {
             color: #cbd5e1;
-            font-size: 13px;
+            font-size: 14px;
             margin: 0;
-            line-height: 1.4;
         }
 
         .btn-register {
             width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
-            color: white;
+            padding: 14px;
+            background: linear-gradient(90deg, #38BDF8 0%, #6366F1 100%);
+            color: #020617;
             border: none;
-            border-radius: 8px;
-            font-weight: 600;
+            border-radius: 12px;
+            font-weight: 800;
             font-size: 16px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 20px;
-            margin-bottom: 15px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            margin-bottom: 12px;
+            box-shadow: 0 12px 30px rgba(56, 189, 248, 0.12);
         }
 
         .btn-register:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.4);
-        }
-
-        .password-group {
-            position: relative;
-        }
-
-        .password-toggle {
-            position: absolute;
-            right: 12px;
-            top: 45px;
-            cursor: pointer;
-            color: #94a3b8;
-            font-size: 16px;
-            transition: color 0.25s ease;
-            user-select: none;
-        }
-
-        .password-toggle:hover {
-            color: #ec4899;
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(56, 189, 248, 0.18);
+            background: linear-gradient(90deg, #36C6EE 0%, #6366F1 100%);
         }
 
         .login-link {
@@ -160,27 +166,30 @@
             text-align: center;
             margin-top: 20px;
             padding-top: 20px;
-            border-top: 1px solid rgba(148, 163, 184, 0.1);
+            border-top: 1px solid rgba(148, 163, 184, 0.06);
         }
 
         .login-link a {
-            color: #ec4899;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .login-link a:hover {
-            text-decoration: underline;
+            color: #38BDF8;
+            font-weight: 700;
         }
 
         .alert {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.3);
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.2);
             color: #fca5a5;
             padding: 12px;
             border-radius: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             font-size: 14px;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 28px;
+            }
+
+            h1 { font-size: 22px; }
         }
     </style>
 </head>
