@@ -556,32 +556,32 @@
                 <p class="section-subtitle">Ribuan game siap untuk di-top up dengan mudah</p>
                 <div class="games-grid">
                     <div class="game-card">
-                        <div class="game-icon">🎮</div>
+                        <div class="game-icon"><img src="{{ asset('images/games/ml.png') }}" alt="Mobile Legends" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         <h4>Mobile Legends</h4>
                         <p>Diamonds & Bonus</p>
                     </div>
                     <div class="game-card">
-                        <div class="game-icon">👑</div>
+                        <div class="game-icon"><img src="{{ asset('images/games/PUBG.png') }}" alt="PUBG Mobile" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         <h4>PUBG Mobile</h4>
                         <p>UC & Battle Pass</p>
                     </div>
                     <div class="game-card">
-                        <div class="game-icon">⚡</div>
+                        <div class="game-icon"><img src="{{ asset('images/games/FF.png') }}" alt="Free Fire" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         <h4>Free Fire</h4>
                         <p>Diamond & Voucher</p>
                     </div>
                     <div class="game-card">
-                        <div class="game-icon">🎯</div>
+                        <div class="game-icon"><img src="{{ asset('images/games/AOV.png') }}" alt="Arena of Valor" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         <h4>Arena of Valor</h4>
                         <p>Valor Pass & Voucher</p>
                     </div>
                     <div class="game-card">
-                        <div class="game-icon">🌟</div>
+                        <div class="game-icon"><img src="{{ asset('images/games/HONKAI.png') }}" alt="Honkai Star Rail" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         <h4>Honkai Star Rail</h4>
                         <p>Crystal & Pass</p>
                     </div>
                     <div class="game-card">
-                        <div class="game-icon">🎪</div>
+                        <div class="game-icon"><img src="{{ asset('images/games/GENSHIN.png') }}" alt="Genshin Impact" style="width: 100%; height: 100%; object-fit: contain;"></div>
                         <h4>Genshin Impact</h4>
                         <p>Genesis Crystal</p>
                     </div>
