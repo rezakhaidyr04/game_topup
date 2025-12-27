@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Game TopUp</title>
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600,700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
         * {
             margin: 0;
@@ -14,51 +16,57 @@
         }
 
         body {
-            font-family: 'Figtree', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #2d1b69 50%, #0f172a 100%);
-            background-attachment: fixed;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0F172A 0%, #020617 100%);
+            color: #F8FAFC;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            line-height: 1.6;
+            padding: 2rem;
         }
 
         .container {
-            max-width: 450px;
+            max-width: 520px;
             width: 100%;
             padding: 20px;
         }
 
         .card {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(45, 27, 105, 0.6) 100%);
-            border: 1px solid rgba(148, 163, 184, 0.2);
+            background: #1E293B;
+            border: 1px solid #334155;
             border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(236, 72, 153, 0.15);
+            padding: 48px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
         }
 
         .logo {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 18px;
             font-size: 2.5rem;
+            color: #38BDF8;
+            display: flex;
+            justify-content: center;
         }
 
         h1 {
-            color: #e2e8f0;
-            font-size: 28px;
-            margin-bottom: 10px;
+            color: #F8FAFC;
+            font-size: 32px;
+            margin-bottom: 6px;
             text-align: center;
+            font-weight: 800;
         }
 
         .subtitle {
-            color: #94a3b8;
+            color: #94A3B8;
             text-align: center;
-            margin-bottom: 30px;
-            font-size: 14px;
+            margin-bottom: 20px;
+            font-size: 15px;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         label {
@@ -72,32 +80,32 @@
         input[type="email"],
         input[type="password"] {
             width: 100%;
-            padding: 12px 15px;
+            padding: 12px 14px;
             background: rgba(15, 23, 42, 0.5);
-            border: 1px solid rgba(148, 163, 184, 0.2);
+            border: 1px solid rgba(148, 163, 184, 0.08);
             border-radius: 8px;
-            color: #e2e8f0;
+            color: #F8FAFC;
             font-size: 14px;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
         }
 
         input[type="email"]:focus,
         input[type="password"]:focus {
             outline: none;
-            border-color: rgba(236, 72, 153, 0.5);
-            background: rgba(15, 23, 42, 0.8);
-            box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+            border-color: #38BDF8;
+            background: rgba(15, 23, 42, 0.85);
+            box-shadow: 0 0 0 6px rgba(56, 189, 248, 0.06);
         }
 
         input::placeholder {
-            color: #64748b;
+            color: #94a3b8;
         }
 
         .checkbox-group {
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         input[type="checkbox"] {
@@ -113,62 +121,72 @@
         .btn-login {
             width: 100%;
             padding: 12px;
-            background: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
-            color: white;
+            background: #38BDF8;
+            color: #020617;
             border: none;
             border-radius: 8px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 16px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 15px;
+            transition: all 0.25s ease;
+            margin-bottom: 12px;
         }
 
         .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.4);
+            box-shadow: 0 12px 28px rgba(56, 189, 248, 0.18);
+            background: #6366F1;
+            color: #020617;
         }
 
         .links {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 14px;
         }
 
         .links a {
-            color: #ec4899;
+            color: #38BDF8;
             text-decoration: none;
             font-size: 14px;
-            transition: color 0.3s ease;
+            transition: color 0.25s ease;
         }
 
         .links a:hover {
-            color: #d946ef;
+            color: #6366F1;
             text-decoration: underline;
         }
 
         .register-link {
             color: #94a3b8;
             text-align: center;
-            margin-top: 25px;
-            padding-top: 25px;
-            border-top: 1px solid rgba(148, 163, 184, 0.1);
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(148, 163, 184, 0.06);
         }
 
         .register-link a {
-            color: #ec4899;
-            font-weight: 600;
+            color: #38BDF8;
+            font-weight: 700;
         }
 
         .alert {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.3);
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.2);
             color: #fca5a5;
             padding: 12px;
             border-radius: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             font-size: 14px;
         }
-    </style>
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 28px;
+            }
+
+            h1 { font-size: 22px; }
+        }
+    </link>
 </head>
 <body>
     <div class="container">
