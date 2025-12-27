@@ -3,249 +3,702 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Game TopUp - Tempat Terpercaya untuk Top Up Game</title>
+        <title>GameTopup - Top Up Game Aman & Terpercaya</title>
 
         <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,600,700&display=swap" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-        <!-- Styles -->
         <style>
-            /* ! tailwindcss v3.2.4 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Figtree, sans-serif;font-feature-settings:normal}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;font-weight:inherit;line-height:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]{display:none}*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: }::-webkit-backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: }.relative{position:relative}.mx-auto{margin-left:auto;margin-right:auto}.mx-6{margin-left:1.5rem;margin-right:1.5rem}.ml-4{margin-left:1rem}.mt-16{margin-top:4rem}.mt-6{margin-top:1.5rem}.mt-4{margin-top:1rem}.-mt-px{margin-top:-1px}.mr-1{margin-right:0.25rem}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.h-16{height:4rem}.h-7{height:1.75rem}.h-6{height:1.5rem}.h-5{height:1.25rem}.min-h-screen{min-height:100vh}.w-auto{width:auto}.w-16{width:4rem}.w-7{width:1.75rem}.w-6{width:1.5rem}.w-5{width:1.25rem}.max-w-7xl{max-width:80rem}.shrink-0{flex-shrink:0}.scale-100{--tw-scale-x:1;--tw-scale-y:1;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.items-center{align-items:center}.justify-center{justify-content:center}.gap-6{gap:1.5rem}.gap-4{gap:1rem}.self-center{align-self:center}.rounded-lg{border-radius:0.5rem}.rounded-full{border-radius:9999px}.bg-gray-100{--tw-bg-opacity:1;background-color:rgb(243 244 246 / var(--tw-bg-opacity))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity))}.bg-red-50{--tw-bg-opacity:1;background-color:rgb(254 242 242 / var(--tw-bg-opacity))}.bg-dots-darker{background-image:url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E")}.from-gray-700\/50{--tw-gradient-from:rgb(55 65 81 / 0.5);--tw-gradient-to:rgb(55 65 81 / 0);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-transparent{--tw-gradient-to:rgb(0 0 0 / 0);--tw-gradient-stops:var(--tw-gradient-from), transparent, var(--tw-gradient-to)}.bg-center{background-position:center}.stroke-red-500{stroke:#ef4444}.stroke-gray-400{stroke:#9ca3af}.p-6{padding:1.5rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.text-center{text-align:center}.text-right{text-align:right}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.font-semibold{font-weight:600}.leading-relaxed{line-height:1.625}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity))}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-gray-500\/20{--tw-shadow-color:rgb(107 114 128 / 0.2);--tw-shadow:var(--tw-shadow-colored)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.selection\:bg-red-500 *::selection{--tw-bg-opacity:1;background-color:rgb(239 68 68 / var(--tw-bg-opacity))}.selection\:text-white *::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity))}.selection\:bg-red-500::selection{--tw-bg-opacity:1;background-color:rgb(239 68 68 / var(--tw-bg-opacity))}.selection\:text-white::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity))}.hover\:text-gray-900:hover{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity))}.hover\:text-gray-700:hover{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity))}.focus\:rounded-sm:focus{border-radius:0.125rem}.focus\:outline:focus{outline-style:solid}.focus\:outline-2:focus{outline-width:2px}.focus\:outline-red-500:focus{outline-color:#ef4444}.group:hover .group-hover\:stroke-gray-600{stroke:#4b5563}.z-10{z-index: 10}@media (prefers-reduced-motion: no-preference){.motion-safe\:hover\:scale-\[1\.01\]:hover{--tw-scale-x:1.01;--tw-scale-y:1.01;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}}@media (prefers-color-scheme: dark){.dark\:bg-gray-900{--tw-bg-opacity:1;background-color:rgb(17 24 39 / var(--tw-bg-opacity))}.dark\:bg-gray-800\/50{background-color:rgb(31 41 55 / 0.5)}.dark\:bg-red-800\/20{background-color:rgb(153 27 27 / 0.2)}.dark\:bg-dots-lighter{background-image:url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(255,255,255,0.07)'/%3E%3C/svg%3E")}.dark\:bg-gradient-to-bl{background-image:linear-gradient(to bottom left, var(--tw-gradient-stops))}.dark\:stroke-gray-600{stroke:#4b5563}.dark\:text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity))}.dark\:text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity))}.dark\:shadow-none{--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.dark\:ring-1{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.dark\:ring-inset{--tw-ring-inset:inset}.dark\:ring-white\/5{--tw-ring-color:rgb(255 255 255 / 0.05)}.dark\:hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity))}.group:hover .dark\:group-hover\:stroke-gray-400{stroke:#9ca3af}}@media (min-width: 640px){.sm\:fixed{position:fixed}.sm\:top-0{top:0px}.sm\:right-0{right:0px}.sm\:ml-0{margin-left:0px}.sm\:flex{display:flex}.sm\:items-center{align-items:center}.sm\:justify-center{justify-content:center}.sm\:justify-between{justify-content:space-between}.sm\:text-left{text-align:left}.sm\:text-right{text-align:right}}@media (min-width: 768px){.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}@media (min-width: 1024px){.lg\:gap-8{gap:2rem}.lg\:p-8{padding:2rem}}
-        </style>
-    </head>
-    <body class="antialiased bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
             body {
-                background: linear-gradient(135deg, #0f172a 0%, #2d1b69 50%, #0f172a 100%);
-                background-attachment: fixed;
-                color: #e2e8f0;
-                font-family: 'Figtree', sans-serif;
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                background: #0F172A;
+                color: #F8FAFC;
+                line-height: 1.6;
             }
 
-            .game-card {
-                background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(45, 27, 105, 0.5) 100%);
-                border: 1px solid rgba(148, 163, 184, 0.2);
+            /* Navigation */
+            nav {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                background: rgba(2, 6, 23, 0.95);
+                backdrop-filter: blur(10px);
+                z-index: 1000;
+                box-shadow: 0 2px 12px rgba(56, 189, 248, 0.08);
+            }
+
+            .navbar-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 1rem 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: #38BDF8;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .nav-links {
+                display: flex;
+                gap: 2rem;
+                align-items: center;
+                list-style: none;
+            }
+
+            .nav-links a {
+                text-decoration: none;
+                color: #F8FAFC;
+                font-weight: 500;
+                transition: color 0.3s ease;
+                font-size: 0.95rem;
+            }
+
+            .nav-links a:hover {
+                color: #38BDF8;
+            }
+
+            .btn {
+                padding: 0.6rem 1.2rem;
+                border: none;
+                border-radius: 6px;
+                font-weight: 600;
+                cursor: pointer;
                 transition: all 0.3s ease;
-            }
-
-            .game-card:hover {
-                transform: translateY(-8px);
-                background: linear-gradient(135deg, rgba(30, 41, 59, 1) 0%, rgba(45, 27, 105, 0.8) 100%);
-                border-color: rgba(236, 72, 153, 0.5);
-                box-shadow: 0 20px 40px rgba(236, 72, 153, 0.2);
+                text-decoration: none;
+                display: inline-block;
+                font-size: 0.9rem;
             }
 
             .btn-primary {
-                background: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
-                color: white;
-                padding: 12px 32px;
-                border-radius: 8px;
-                font-weight: 600;
-                transition: all 0.3s ease;
-                border: none;
-                cursor: pointer;
-                display: inline-block;
-                text-decoration: none;
+                background: #38BDF8;
+                color: #020617;
             }
 
             .btn-primary:hover {
-                transform: scale(1.05);
-                box-shadow: 0 10px 25px rgba(236, 72, 153, 0.4);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 16px rgba(56, 189, 248, 0.3);
+                background: #6366F1;
             }
 
             .btn-secondary {
                 background: transparent;
-                color: #94a3b8;
-                padding: 12px 32px;
-                border: 2px solid rgba(148, 163, 184, 0.3);
-                border-radius: 8px;
-                font-weight: 600;
-                transition: all 0.3s ease;
-                cursor: pointer;
-                display: inline-block;
-                text-decoration: none;
+                color: #38BDF8;
+                border: 2px solid #38BDF8;
             }
 
             .btn-secondary:hover {
-                color: white;
-                border-color: rgba(236, 72, 153, 0.5);
+                background: #38BDF8;
+                color: #020617;
             }
 
-            .glowing-text {
-                background: linear-gradient(135deg, #ec4899, #d946ef, #ec4899);
-                background-size: 200% 200%;
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
-                animation: gradient 3s ease infinite;
+            /* Hero Section */
+            .hero {
+                margin-top: 80px;
+                padding: 6rem 2rem;
+                text-align: center;
+                min-height: calc(100vh - 80px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(135deg, #0F172A 0%, #020617 100%);
             }
 
-            @keyframes gradient {
-                0% { background-position: 0% 50%; }
-                50% { background-position: 100% 50%; }
-                100% { background-position: 0% 50%; }
+            .hero-content h1 {
+                font-size: 3.5rem;
+                font-weight: 800;
+                margin-bottom: 1rem;
+                line-height: 1.1;
+                color: #F8FAFC;
             }
 
-            .hero-badge {
-                display: inline-block;
-                background: rgba(236, 72, 153, 0.1);
-                color: #ec4899;
-                padding: 8px 16px;
-                border-radius: 20px;
-                font-size: 0.875rem;
+            .hero-content p {
+                font-size: 1.2rem;
+                color: #94A3B8;
+                margin-bottom: 2rem;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            /* Features Section */
+            .features {
+                padding: 6rem 2rem;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .section-title {
+                text-align: center;
+                font-size: 2.5rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+                color: #F8FAFC;
+            }
+
+            .section-subtitle {
+                text-align: center;
+                color: #94A3B8;
+                font-size: 1.1rem;
+                margin-bottom: 4rem;
+            }
+
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+            }
+
+            .feature-card {
+                background: #1E293B;
+                padding: 2rem;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                border: 1px solid #334155;
+                transition: all 0.3s ease;
+                text-align: center;
+            }
+
+            .feature-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 12px 28px rgba(56, 189, 248, 0.2);
+                border-color: #38BDF8;
+                background: #1E293B;
+            }
+
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+                margin: 0 auto 1.5rem;
+                background: #38BDF8;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #020617;
+                font-size: 1.8rem;
+            }
+
+            .feature-card h3 {
+                font-size: 1.2rem;
+                margin-bottom: 0.8rem;
+                color: #F8FAFC;
                 font-weight: 600;
-                border: 1px solid rgba(236, 72, 153, 0.3);
+            }
+
+            .feature-card p {
+                color: #94A3B8;
+                line-height: 1.8;
+                font-size: 0.95rem;
+            }
+
+            /* Games Section */
+            .games {
+                padding: 6rem 2rem;
+                background: #020617;
+            }
+
+            .games-container {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .games-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 1.5rem;
+                margin-top: 3rem;
+            }
+
+            .game-card {
+                background: #1E293B;
+                padding: 1.5rem;
+                border-radius: 10px;
+                text-align: center;
+                transition: all 0.3s ease;
+                cursor: pointer;
+                border: 1px solid #334155;
+            }
+
+            .game-card:hover {
+                border-color: #38BDF8;
+                transform: translateY(-6px);
+                box-shadow: 0 12px 28px rgba(56, 189, 248, 0.2);
+            }
+
+            .game-icon {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .game-card h4 {
+                font-size: 1rem;
+                color: #F8FAFC;
+                margin-bottom: 0.4rem;
+                font-weight: 600;
+            }
+
+            .game-card p {
+                color: #94A3B8;
+                font-size: 0.85rem;
+                margin-bottom: 0;
+            }
+
+            /* Pricing Section */
+            .pricing {
+                padding: 6rem 2rem;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .pricing-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+
+            .pricing-card {
+                background: #1E293B;
+                padding: 2.5rem 2rem;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                border: 2px solid #334155;
+                transition: all 0.3s ease;
+                text-align: center;
+            }
+
+            .pricing-card.featured {
+                border-color: #38BDF8;
+                transform: scale(1.05);
+                box-shadow: 0 12px 40px rgba(56, 189, 248, 0.25);
+                background: #1E293B;
+            }
+
+            .pricing-card h3 {
+                font-size: 1.3rem;
+                margin-bottom: 1rem;
+                color: #F8FAFC;
+                font-weight: 600;
+            }
+
+            .price {
+                font-size: 2.2rem;
+                font-weight: 700;
+                color: #22C55E;
+                margin-bottom: 0.5rem;
+            }
+
+            .price-period {
+                color: #94A3B8;
+                margin-bottom: 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .features-list {
+                list-style: none;
+                margin-bottom: 1.5rem;
+                text-align: left;
+            }
+
+            .features-list li {
+                padding: 0.6rem 0;
+                color: #94A3B8;
+                border-bottom: 1px solid #334155;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .features-list li:before {
+                content: "✓";
+                color: #22C55E;
+                font-weight: bold;
+                font-size: 1rem;
+            }
+
+            /* CTA Section */
+            .cta {
+                background: #38BDF8;
+                padding: 4rem 2rem;
+                text-align: center;
+                margin: 6rem 2rem;
+                border-radius: 12px;
+                color: #020617;
+                max-width: 1200px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .cta h2 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+                font-weight: 700;
+                color: #020617;
+            }
+
+            .cta p {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+                color: #020617;
+            }
+
+            /* Footer */
+            footer {
+                background: #020617;
+                color: white;
+                padding: 3rem 2rem 1rem;
+            }
+
+            .footer-content {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .footer-section h4 {
+                margin-bottom: 1rem;
+                color: #F8FAFC;
+                font-size: 1rem;
+                font-weight: 600;
+            }
+
+            .footer-section a {
+                display: block;
+                color: #94A3B8;
+                text-decoration: none;
+                margin-bottom: 0.5rem;
+                transition: color 0.3s ease;
+                font-size: 0.9rem;
+            }
+
+            .footer-section a:hover {
+                color: #38BDF8;
+            }
+
+            .footer-section p {
+                color: #94A3B8;
+                font-size: 0.9rem;
+                line-height: 1.8;
+            }
+
+            .footer-bottom {
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                padding-top: 2rem;
+                color: #64748B;
+                text-align: center;
+                font-size: 0.85rem;
+            }
+
+            /* Responsive */
+            @media (max-width: 768px) {
+                .hero-content h1 {
+                    font-size: 2.2rem;
+                }
+
+                .hero-content p {
+                    font-size: 1rem;
+                }
+
+                .section-title {
+                    font-size: 1.8rem;
+                }
+
+                .nav-links {
+                    gap: 1rem;
+                }
+
+                .hero-buttons {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .cta h2 {
+                    font-size: 1.6rem;
+                }
+
+                .navbar-container {
+                    flex-direction: column;
+                    gap: 1rem;
+                }
+
+                .pricing-card.featured {
+                    transform: scale(1);
+                }
             }
         </style>
-
+    </head>
+    <body>
         <!-- Navigation -->
-        @if (Route::has('login'))
-            <div class="fixed top-0 right-0 p-6 z-10">
-                @auth
-                    <a href="{{ url('/home') }}" class="btn-primary">Dashboard</a>
-                @else
-                    <a href="{{ route('login') }}" class="btn-secondary">Masuk</a>
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="btn-primary ml-4">Daftar</a>
+        <nav>
+            <div class="navbar-container">
+                <a href="#home" class="logo">
+                    <i class="fas fa-gamepad"></i>
+                    GameTopup
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#features">Fitur</a></li>
+                    <li><a href="#games">Game</a></li>
+                    <li><a href="#pricing">Harga</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                    @if (Route::has('login'))
+                        @auth
+                            <li><a href="{{ url('/home') }}" class="btn btn-primary">Dashboard</a></li>
+                        @else
+                            <li><a href="{{ route('login') }}" class="btn btn-secondary">Login</a></li>
+                        @endauth
                     @endif
-                @endauth
+                </ul>
             </div>
-        @endif
+        </nav>
 
         <!-- Hero Section -->
-        <section class="min-h-screen flex items-center justify-center px-6 py-20">
-            <div class="max-w-5xl w-full">
-                <!-- Badge -->
-                <div class="text-center mb-8">
-                    <span class="hero-badge">🎮 Platform Top Up Game Terpercaya</span>
-                </div>
-
-                <!-- Main Heading -->
-                <h1 class="text-5xl md:text-7xl font-bold text-center mb-6 leading-tight">
-                    Top Up Game Favorit Anda
-                    <span class="block glowing-text mt-2">Dengan Mudah & Aman</span>
-                </h1>
-
-                <!-- Description -->
-                <p class="text-center text-gray-300 text-lg md:text-xl mb-12 max-w-3xl mx-auto">
-                    Dapatkan akses instan ke semua game populer. Transaksi cepat, aman, dan terpercaya dengan metode pembayaran yang lengkap.
-                </p>
-
-                <!-- CTA Buttons -->
-                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-                    <a href="{{ route('login') }}" class="btn-primary text-center">Mulai Sekarang</a>
-                    <a href="#fitur" class="btn-secondary text-center">Pelajari Lebih Lanjut</a>
-                </div>
-
-                <!-- Stats -->
-                <div class="grid grid-cols-3 gap-6 mb-16">
-                    <div class="text-center">
-                        <div class="text-3xl font-bold glowing-text mb-2">10K+</div>
-                        <div class="text-gray-400">Pengguna Aktif</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold glowing-text mb-2">100+</div>
-                        <div class="text-gray-400">Game Tersedia</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold glowing-text mb-2">24/7</div>
-                        <div class="text-gray-400">Layanan Pelanggan</div>
+        <section class="hero" id="home">
+            <div>
+                <div class="hero-content">
+                    <h1>Top Up Game Aman & Terpercaya</h1>
+                    <p>Layanan top up game online tercepat dengan harga paling kompetitif. Proses instan, aman, dan terjamin 100%</p>
+                    <div class="hero-buttons">
+                        @if (Route::has('login'))
+                            @auth
+                                <a href="{{ url('/dashboard') }}" class="btn btn-primary">Mulai Top Up</a>
+                            @else
+                                <a href="{{ route('register') }}" class="btn btn-primary">Daftar Sekarang</a>
+                                <a href="{{ route('login') }}" class="btn btn-secondary">Login</a>
+                            @endauth
+                        @endif
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Features Section -->
-        <section id="fitur" class="py-20 px-6 bg-black/20">
-            <div class="max-w-5xl mx-auto">
-                <h2 class="text-4xl font-bold text-center mb-16">
-                    Mengapa Memilih Kami?
-                </h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Feature 1 -->
-                    <div class="game-card p-8 rounded-lg">
-                        <div class="text-4xl mb-4">⚡</div>
-                        <h3 class="text-xl font-bold mb-3">Transaksi Cepat</h3>
-                        <p class="text-gray-400">Proses top up instan dalam hitungan detik</p>
+        <section class="features" id="features">
+            <h2 class="section-title">Mengapa Memilih Kami?</h2>
+            <p class="section-subtitle">Kami menyediakan solusi terbaik untuk kebutuhan top up game Anda</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
                     </div>
-
-                    <!-- Feature 2 -->
-                    <div class="game-card p-8 rounded-lg">
-                        <div class="text-4xl mb-4">🔒</div>
-                        <h3 class="text-xl font-bold mb-3">Keamanan Terjamin</h3>
-                        <p class="text-gray-400">Enkripsi tingkat bank untuk setiap transaksi</p>
+                    <h3>Proses Instan</h3>
+                    <p>Top up diproses secara otomatis dalam hitungan detik tanpa perlu menunggu lama</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-
-                    <!-- Feature 3 -->
-                    <div class="game-card p-8 rounded-lg">
-                        <div class="text-4xl mb-4">💳</div>
-                        <h3 class="text-xl font-bold mb-3">Berbagai Metode</h3>
-                        <p class="text-gray-400">Transfer, E-wallet, dan Kartu Kredit</p>
+                    <h3>Aman & Terpercaya</h3>
+                    <p>Transaksi Anda dilindungi dengan enkripsi tingkat bank dan sistem keamanan berlapis</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tag"></i>
                     </div>
-
-                    <!-- Feature 4 -->
-                    <div class="game-card p-8 rounded-lg">
-                        <div class="text-4xl mb-4">💰</div>
-                        <h3 class="text-xl font-bold mb-3">Harga Kompetitif</h3>
-                        <p class="text-gray-400">Harga terbaik dan promo menarik setiap hari</p>
+                    <h3>Harga Kompetitif</h3>
+                    <p>Dapatkan harga terbaik dengan berbagai paket menarik dan diskon eksklusif</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
                     </div>
-
-                    <!-- Feature 5 -->
-                    <div class="game-card p-8 rounded-lg">
-                        <div class="text-4xl mb-4">🎁</div>
-                        <h3 class="text-xl font-bold mb-3">Bonus Berlimpah</h3>
-                        <p class="text-gray-400">Dapatkan bonus dan poin reward setiap pembelian</p>
+                    <h3>Support 24/7</h3>
+                    <p>Tim support kami siap membantu Anda kapan saja dengan respons cepat</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-credit-card"></i>
                     </div>
+                    <h3>Banyak Metode Pembayaran</h3>
+                    <p>Transfer bank, e-wallet, pulsa, dan berbagai metode pembayaran lainnya</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Bonus & Reward</h3>
+                    <p>Dapatkan poin reward setiap transaksi yang dapat ditukar dengan hadiah menarik</p>
+                </div>
+            </div>
+        </section>
 
-                    <!-- Feature 6 -->
-                    <div class="game-card p-8 rounded-lg">
-                        <div class="text-4xl mb-4">👥</div>
-                        <h3 class="text-xl font-bold mb-3">Support H24</h3>
-                        <p class="text-gray-400">Tim support siap membantu Anda kapan saja</p>
+        <!-- Games Section -->
+        <section class="games" id="games">
+            <div class="games-container">
+                <h2 class="section-title">Game yang Tersedia</h2>
+                <p class="section-subtitle">Ribuan game siap untuk di-top up dengan mudah</p>
+                <div class="games-grid">
+                    <div class="game-card">
+                        <div class="game-icon">🎮</div>
+                        <h4>Mobile Legends</h4>
+                        <p>Diamonds & Bonus</p>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-icon">👑</div>
+                        <h4>PUBG Mobile</h4>
+                        <p>UC & Battle Pass</p>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-icon">⚡</div>
+                        <h4>Free Fire</h4>
+                        <p>Diamond & Voucher</p>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-icon">🎯</div>
+                        <h4>Arena of Valor</h4>
+                        <p>Valor Pass & Voucher</p>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-icon">🌟</div>
+                        <h4>Honkai Star Rail</h4>
+                        <p>Crystal & Pass</p>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-icon">🎪</div>
+                        <h4>Genshin Impact</h4>
+                        <p>Genesis Crystal</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Popular Games Section -->
-        <section class="py-20 px-6">
-            <div class="max-w-5xl mx-auto">
-                <h2 class="text-4xl font-bold text-center mb-16">
-                    Game Populer
-                </h2>
+        <!-- CTA Section -->
+        <section class="cta">
+            <h2>Siap Bermain Lebih Seru?</h2>
+            <p>Bergabunglah dengan ribuan pengguna yang telah mempercayai GameTopup</p>
+            @if (Route::has('login'))
+                @auth
+                    <a href="{{ url('/dashboard') }}" class="btn btn-secondary">Buka Dashboard</a>
+                @else
+                    <a href="{{ route('register') }}" class="btn btn-secondary">Daftar Gratis</a>
+                @endauth
+            @endif
+        </section>
 
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-                    @for ($i = 1; $i <= 8; $i++)
-                        <div class="game-card p-6 rounded-lg text-center">
-                            <div class="text-5xl mb-4">
-                                @switch($i)
-                                    @case(1) 🔥 @break
-                                    @case(2) 🎮 @break
-                                    @case(3) 👾 @break
-                                    @case(4) ⚔️ @break
-                                    @case(5) 🚀 @break
-                                    @case(6) 💎 @break
-                                    @case(7) 🌟 @break
-                                    @default 🎯
-                                @endswitch
-                            </div>
-                            <h4 class="font-bold text-sm">Game {{ $i }}</h4>
-                            <p class="text-gray-400 text-xs mt-2">Top Up Sekarang</p>
-                        </div>
-                    @endfor
+        <!-- Pricing Section -->
+        <section class="pricing" id="pricing">
+            <h2 class="section-title">Paket Harga</h2>
+            <p class="section-subtitle">Pilih paket yang sesuai dengan kebutuhan Anda</p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="price">Rp 10K</div>
+                    <div class="price-period">Paket Terkecil</div>
+                    <ul class="features-list">
+                        <li>10.000 Rupiah Top Up</li>
+                        <li>Bonus 1.000 Poin</li>
+                        <li>Proses Instan</li>
+                        <li>Gratis Ongkir</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Pilih Paket</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Professional</h3>
+                    <div class="price">Rp 50K</div>
+                    <div class="price-period">Paket Populer</div>
+                    <ul class="features-list">
+                        <li>50.000 Rupiah Top Up</li>
+                        <li>Bonus 7.500 Poin</li>
+                        <li>Proses Instan</li>
+                        <li>Diskon 5%</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Pilih Paket</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Premium</h3>
+                    <div class="price">Rp 100K</div>
+                    <div class="price-period">Paket Hemat</div>
+                    <ul class="features-list">
+                        <li>100.000 Rupiah Top Up</li>
+                        <li>Bonus 20.000 Poin</li>
+                        <li>Proses Instan</li>
+                        <li>Diskon 10%</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Pilih Paket</a>
                 </div>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer class="py-8 px-6 border-t border-gray-700/30 bg-black/20">
-            <div class="max-w-5xl mx-auto text-center">
-                <p class="text-gray-400 mb-2">&copy; 2024 Game TopUp. All rights reserved.</p>
-                <p class="text-gray-500 text-sm">Aman • Cepat • Terpercaya</p>
+        <footer id="contact">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Tentang Kami</h4>
+                    <a href="#">Tentang GameTopup</a>
+                    <a href="#">Cara Kerja</a>
+                    <a href="#">Kebijakan Privasi</a>
+                    <a href="#">Syarat & Ketentuan</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Layanan</h4>
+                    <a href="#">Top Up Game</a>
+                    <a href="#">Voucher Game</a>
+                    <a href="#">Jual Akun Game</a>
+                    <a href="#">Promo & Diskon</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Hubungi Kami</h4>
+                    <a href="mailto:support@gametopup.com">support@gametopup.com</a>
+                    <a href="https://wa.me/6281234567890">WhatsApp: 0812-3456-7890</a>
+                    <a href="#">Instagram: @gametopup.id</a>
+                    <a href="#">Facebook: GameTopup Official</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Metode Pembayaran</h4>
+                    <p style="color: #bdc3c7; margin-bottom: 1rem;">
+                        <i class="fas fa-university"></i> Transfer Bank<br>
+                        <i class="fas fa-wallet"></i> E-Wallet<br>
+                        <i class="fas fa-mobile-alt"></i> Pulsa & Paket<br>
+                        <i class="fas fa-qrcode"></i> QRIS
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 GameTopup. Semua Hak Dilindungi. | Dibuat dengan <i class="fas fa-heart" style="color: #e74c3c;"></i> untuk gamer Indonesia</p>
             </div>
         </footer>
+
+        <script>
+            // Smooth scroll untuk anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        </script>
     </body>
 </html>
