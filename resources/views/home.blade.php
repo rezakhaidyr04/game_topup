@@ -17,28 +17,25 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #f8f9fa;
-            color: #2c3e50;
+            background: #0F172A;
+            color: #F8FAFC;
             min-height: 100vh;
         }
 
         header {
-            background: white;
-            border-bottom: 1px solid #e9ecef;
+            background: #020617;
+            border-bottom: 1px solid #334155;
             padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         .logo-header {
             font-size: 1.5rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #38BDF8;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -51,7 +48,7 @@
         }
 
         .nav-links a {
-            color: #2c3e50;
+            color: #F8FAFC;
             text-decoration: none;
             font-weight: 500;
             font-size: 0.95rem;
@@ -59,17 +56,17 @@
         }
 
         .nav-links a:hover {
-            color: #667eea;
+            color: #38BDF8;
         }
 
         .user-greeting {
-            color: #7f8c8d;
+            color: #94A3B8;
             font-size: 0.95rem;
         }
 
         .btn-logout {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: #38BDF8;
+            color: #020617;
             padding: 0.6rem 1.2rem;
             border: none;
             border-radius: 6px;
@@ -81,7 +78,8 @@
 
         .btn-logout:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 8px 16px rgba(56, 189, 248, 0.3);
+            background: #6366F1;
         }
 
         .container {
@@ -91,23 +89,23 @@
         }
 
         .welcome-card {
-            background: white;
+            background: #1E293B;
             border-radius: 12px;
             padding: 2.5rem;
             margin-bottom: 2.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-            border: 1px solid #e9ecef;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid #334155;
         }
 
         h1 {
             font-size: 2rem;
             margin-bottom: 0.5rem;
-            color: #2c3e50;
+            color: #F8FAFC;
             font-weight: 700;
         }
 
         .subtitle {
-            color: #7f8c8d;
+            color: #94A3B8;
             font-size: 1rem;
             margin-bottom: 1.5rem;
             font-weight: 400;
@@ -121,8 +119,8 @@
         }
 
         .action-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #f0f3fa 100%);
-            border: 1px solid #e9ecef;
+            background: #1E293B;
+            border: 1px solid #334155;
             border-radius: 10px;
             padding: 1.5rem;
             text-align: center;
@@ -132,9 +130,9 @@
 
         .action-card:hover {
             transform: translateY(-5px);
-            border-color: #667eea;
-            box-shadow: 0 12px 24px rgba(102, 126, 234, 0.1);
-            background: linear-gradient(135deg, #ffffff 0%, #f8faff 100%);
+            border-color: #38BDF8;
+            box-shadow: 0 12px 24px rgba(56, 189, 248, 0.2);
+            background: #1E293B;
         }
 
         .action-card .icon {
@@ -143,21 +141,21 @@
         }
 
         .action-card h3 {
-            color: #2c3e50;
+            color: #F8FAFC;
             font-size: 1rem;
             margin-bottom: 0.5rem;
             font-weight: 600;
         }
 
         .action-card p {
-            color: #7f8c8d;
+            color: #94A3B8;
             font-size: 0.85rem;
             margin-bottom: 0.8rem;
         }
 
         .action-card a {
             display: inline-block;
-            color: #667eea;
+            color: #38BDF8;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.85rem;
@@ -165,7 +163,7 @@
         }
 
         .action-card a:hover {
-            color: #764ba2;
+            color: #6366F1;
         }
 
         .section {
@@ -175,7 +173,7 @@
         .section h2 {
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
-            color: #2c3e50;
+            color: #F8FAFC;
             font-weight: 600;
             display: flex;
             align-items: center;
@@ -190,8 +188,8 @@
         }
 
         .game-card {
-            background: white;
-            border: 1px solid #e9ecef;
+            background: #1E293B;
+            border: 1px solid #334155;
             border-radius: 10px;
             padding: 1.5rem;
             text-align: center;
@@ -201,8 +199,8 @@
 
         .game-card:hover {
             transform: translateY(-6px);
-            border-color: #667eea;
-            box-shadow: 0 12px 28px rgba(102, 126, 234, 0.12);
+            border-color: #38BDF8;
+            box-shadow: 0 12px 28px rgba(56, 189, 248, 0.2);
         }
 
         .game-card .icon {
@@ -212,21 +210,21 @@
         }
 
         .game-card h4 {
-            color: #2c3e50;
+            color: #F8FAFC;
             margin-bottom: 0.4rem;
             font-size: 0.95rem;
             font-weight: 600;
         }
 
         .game-card p {
-            color: #7f8c8d;
+            color: #94A3B8;
             font-size: 0.8rem;
             margin-bottom: 1rem;
         }
 
         .btn-topup {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: #38BDF8;
+            color: #020617;
             padding: 0.6rem 1rem;
             border: none;
             border-radius: 6px;
@@ -241,9 +239,30 @@
 
         .btn-topup:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 8px 16px rgba(56, 189, 248, 0.3);
+            background: #6366F1;
+        }
+        .profile-icon-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #38BDF8 0%, #6366F1 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #020617;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid #334155;
         }
 
+        .profile-icon-link:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4);
+            border-color: #38BDF8;
+        }
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -274,6 +293,9 @@
         <div class="nav-links">
             <span class="user-greeting">Halo, {{ auth()->user()->name }}! 👋</span>
             <a href="{{ route('topup.index') }}">Top Up</a>
+            <a href="{{ route('profile') }}" class="profile-icon-link" title="Profile Saya">
+                {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+            </a>
             <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                 @csrf
                 <button type="submit" class="btn-logout">Logout</button>
@@ -309,7 +331,7 @@
                     <div class="icon">⚙️</div>
                     <h3>Pengaturan</h3>
                     <p>Kelola akun Anda</p>
-                    <a href="#">Coming Soon</a>
+                    <a href="{{ url('/profile') }}">Lihat Profile →</a>
                 </div>
             </div>
         </div>
