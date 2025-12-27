@@ -27,7 +27,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', function () {
         return view('profile');
     })->name('profile');
-
+    Route::get('/settings', function () {
+        return view('settings');
+    })->name('settings');
     Route::get('/topup', [TopUpController::class, 'index'])->name('topup.index');
     Route::get('/topup/game/{game}', [TopUpController::class, 'show'])->name('topup.show');
     Route::post('/topup/purchase', [TopUpController::class, 'purchase'])->name('topup.purchase');

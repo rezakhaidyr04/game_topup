@@ -331,7 +331,7 @@
                     <div class="icon">⚙️</div>
                     <h3>Pengaturan</h3>
                     <p>Kelola akun Anda</p>
-                    <a href="{{ url('/profile') }}">Lihat Profile →</a>
+                    <a href="{{ url('/settings') }}">Pengaturan →</a>
                 </div>
             </div>
         </div>
