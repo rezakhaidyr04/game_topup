@@ -19,8 +19,8 @@
             -webkit-font-smoothing:antialiased;
             -moz-osx-font-smoothing:grayscale;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #0F172A 0%, #020617 100%);
-            color: #F8FAFC;
+            background: #ffffff;
+            color: #020617;
             min-height: 100vh;
             display: flex;
             align-items: center;
