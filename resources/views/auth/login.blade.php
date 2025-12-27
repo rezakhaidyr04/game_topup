@@ -186,6 +186,25 @@
             font-weight: 700;
         }
 
+        .password-group {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 45px;
+            cursor: pointer;
+            color: #94a3b8;
+            font-size: 18px;
+            transition: color 0.25s ease;
+            user-select: none;
+        }
+
+        .password-toggle:hover {
+            color: #38BDF8;
+        }
+
         .alert {
             background: rgba(239, 68, 68, 0.08);
             border: 1px solid rgba(239, 68, 68, 0.2);
@@ -228,7 +247,12 @@
 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Masukkan password Anda" required>
+                    <div class="password-group">
+                        <input type="password" id="password" name="password" placeholder="Masukkan password Anda" required>
+                        <span class="password-toggle" onclick="togglePasswordVisibility('password')">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                    </div>
                 </div>
 
                 <div class="checkbox-group">
@@ -248,5 +272,20 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function togglePasswordVisibility(fieldId) {
+            const field = document.getElementById(fieldId);
+            const icon = event.target.closest('.password-toggle');
+            
+            if (field.type === 'password') {
+                field.type = 'text';
+                icon.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            } else {
+                field.type = 'password';
+                icon.innerHTML = '<i class="fas fa-eye"></i>';
+            }
+        }
+    </script>
 </body>
 </html>

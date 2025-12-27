@@ -6,6 +6,7 @@
     <title>Register - Game TopUp</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -135,6 +136,25 @@
             box-shadow: 0 10px 25px rgba(236, 72, 153, 0.4);
         }
 
+        .password-group {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 45px;
+            cursor: pointer;
+            color: #94a3b8;
+            font-size: 16px;
+            transition: color 0.25s ease;
+            user-select: none;
+        }
+
+        .password-toggle:hover {
+            color: #ec4899;
+        }
+
         .login-link {
             color: #94a3b8;
             text-align: center;
@@ -192,12 +212,22 @@
 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Minimal 8 karakter" required>
+                    <div class="password-group">
+                        <input type="password" id="password" name="password" placeholder="Minimal 8 karakter" required>
+                        <span class="password-toggle" onclick="togglePasswordVisibility('password')">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label for="password_confirmation">Konfirmasi Password</label>
-                    <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Ulangi password Anda" required>
+                    <div class="password-group">
+                        <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Ulangi password Anda" required>
+                        <span class="password-toggle" onclick="togglePasswordVisibility('password_confirmation')">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                    </div>
                 </div>
 
                 <div class="checkbox-group">
@@ -213,5 +243,20 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function togglePasswordVisibility(fieldId) {
+            const field = document.getElementById(fieldId);
+            const icon = event.target.closest('.password-toggle');
+            
+            if (field.type === 'password') {
+                field.type = 'text';
+                icon.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            } else {
+                field.type = 'password';
+                icon.innerHTML = '<i class="fas fa-eye"></i>';
+            }
+        }
+    </script>
 </body>
 </html>
