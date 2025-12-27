@@ -16,8 +16,11 @@
         }
 
         body {
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #0F172A 0%, #020617 100%);
+            background-image: radial-gradient(circle at 10% 10%, rgba(56,189,248,0.03), transparent 15%), radial-gradient(circle at 90% 90%, rgba(99,102,241,0.02), transparent 25%);
             color: #F8FAFC;
             min-height: 100vh;
             display: flex;
@@ -28,31 +31,43 @@
         }
 
         .container {
-            max-width: 520px;
+            max-width: 560px;
             width: 100%;
             padding: 20px;
         }
 
         .card {
-            background: #1E293B;
-            border: 1px solid #334155;
-            border-radius: 12px;
-            padding: 48px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+            background: linear-gradient(180deg, #111827 0%, #0b1220 100%);
+            border: 1px solid rgba(51,65,85,0.6);
+            border-radius: 16px;
+            padding: 56px;
+            box-shadow: 0 20px 50px rgba(2, 6, 23, 0.6);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 30px 70px rgba(2, 6, 23, 0.75);
+        }
+
+        .brand {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            justify-content: center;
+            color: #38BDF8;
+            margin-bottom: 12px;
+            font-weight: 700;
+            font-size: 1.2rem;
         }
 
         .logo {
-            text-align: center;
-            margin-bottom: 18px;
-            font-size: 2.5rem;
-            color: #38BDF8;
-            display: flex;
-            justify-content: center;
+            font-size: 2.4rem;
         }
 
         h1 {
             color: #F8FAFC;
-            font-size: 32px;
+            font-size: 36px;
             margin-bottom: 6px;
             text-align: center;
             font-weight: 800;
@@ -67,6 +82,7 @@
 
         .form-group {
             margin-bottom: 16px;
+            position: relative;
         }
 
         label {
@@ -80,21 +96,22 @@
         input[type="email"],
         input[type="password"] {
             width: 100%;
-            padding: 12px 14px;
-            background: rgba(15, 23, 42, 0.5);
-            border: 1px solid rgba(148, 163, 184, 0.08);
-            border-radius: 8px;
+            padding: 14px 16px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.06);
+            border-radius: 10px;
             color: #F8FAFC;
-            font-size: 14px;
+            font-size: 15px;
             transition: all 0.25s ease;
+            box-shadow: inset 0 -6px 18px rgba(0,0,0,0.45);
         }
 
         input[type="email"]:focus,
         input[type="password"]:focus {
             outline: none;
             border-color: #38BDF8;
-            background: rgba(15, 23, 42, 0.85);
-            box-shadow: 0 0 0 6px rgba(56, 189, 248, 0.06);
+            background: rgba(15, 23, 42, 0.88);
+            box-shadow: 0 8px 30px rgba(56, 189, 248, 0.12);
         }
 
         input::placeholder {
@@ -120,23 +137,23 @@
 
         .btn-login {
             width: 100%;
-            padding: 12px;
-            background: #38BDF8;
+            padding: 14px;
+            background: linear-gradient(90deg, #38BDF8 0%, #6366F1 100%);
             color: #020617;
             border: none;
-            border-radius: 8px;
-            font-weight: 700;
+            border-radius: 12px;
+            font-weight: 800;
             font-size: 16px;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
             margin-bottom: 12px;
+            box-shadow: 0 12px 30px rgba(56, 189, 248, 0.12);
         }
 
         .btn-login:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 28px rgba(56, 189, 248, 0.18);
-            background: #6366F1;
-            color: #020617;
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(56, 189, 248, 0.18);
+            background: linear-gradient(90deg, #36C6EE 0%, #6366F1 100%);
         }
 
         .links {
@@ -186,7 +203,7 @@
 
             h1 { font-size: 22px; }
         }
-    </link>
+    </style>
 </head>
 <body>
     <div class="container">
