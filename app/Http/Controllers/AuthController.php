@@ -22,10 +22,11 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            return redirect()->route('home');
+            $request->session()->regenerate();
+            return redirect()->route('home')->with('success', 'Login berhasil!');
         }
 
-        return back()->withErrors(['email' => 'Email atau password salah.']);
+        return back()->withErrors(['email' => 'Email atau password salah.'])->onlyInput('email');
     }
 
     public function showRegister()

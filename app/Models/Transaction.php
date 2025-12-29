@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
+    const STATUS_PENDING = 'pending';
+    const STATUS_SUCCESS = 'success';
+    const STATUS_FAILED = 'failed';
+
     protected $fillable = ['user_id', 'game_id', 'topup_id', 'amount', 'price', 'status', 'game_account'];
 
     public function user()

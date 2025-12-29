@@ -3,21 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
-use App\Models\TopUp;
 use App\Models\Transaction;
-use Illuminate\Http\Request;
+use App\Http\Requests\PurchaseTopUpRequest;
+use App\Services\TopUpService;
 use Illuminate\Support\Facades\Auth;
+use Exception;
 
 class TopUpController extends Controller
 {
+    private TopUpService $topUpService;
+
+    public function __construct(TopUpService $topUpService)
+    {
+        $this->topUpService = $topUpService;
+    }
+
     public function index()
     {
         $games = Game::with('topups')->get();
-        $userTransactions = Transaction::where('user_id', Auth::id())
-            ->with('game', 'topup')
-            ->latest()
-            ->take(5)
-            ->get();
+        $userTransactions = $this->topUpService->getUserTransactions(Auth::id());
         
         return view('topup.index', compact('games', 'userTransactions'));
     }
@@ -28,35 +32,19 @@ class TopUpController extends Controller
         return view('topup.show', compact('game', 'topups'));
     }
 
-    public function purchase(Request $request)
+    public function purchase(PurchaseTopUpRequest $request)
     {
-        $validated = $request->validate([
-            'game_id' => 'required|exists:games,id',
-            'topup_id' => 'required|exists:top_ups,id',
-            'game_account' => 'required|string',
-        ]);
-
-        $topup = TopUp::find($validated['topup_id']);
-
-        $transaction = Transaction::create([
-            'user_id' => Auth::id(),
-            'game_id' => $validated['game_id'],
-            'topup_id' => $validated['topup_id'],
-            'amount' => $topup->amount,
-            'price' => $topup->price,
-            'status' => 'success',
-            'game_account' => $validated['game_account'],
-        ]);
-
-        return redirect()->route('topup.receipt', $transaction)->with('success', 'Top-up berhasil!');
+        try {
+            $transaction = $this->topUpService->processPurchase($request->validated());
+            return redirect()->route('topup.receipt', $transaction)->with('success', 'Top-up berhasil!');
+        } catch (Exception $e) {
+            return back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
     public function receipt(Transaction $transaction)
     {
-        if ($transaction->user_id !== Auth::id()) {
-            return redirect()->route('home');
-        }
-
+        $this->authorize('view', $transaction);
         return view('topup.receipt', compact('transaction'));
     }
 }
