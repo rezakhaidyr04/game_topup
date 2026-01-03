@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Top Up Game - Game TopUp</title>
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600,700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
         * {
             margin: 0;
@@ -14,149 +16,162 @@
         }
 
         body {
-            font-family: 'Figtree', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #2d1b69 50%, #0f172a 100%);
-            background-attachment: fixed;
-            color: #e2e8f0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0F172A;
+            color: #F8FAFC;
             min-height: 100vh;
         }
 
         header {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(45, 27, 105, 0.6) 100%);
-            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
-            padding: 20px 40px;
+            background: #020617;
+            border-bottom: 1px solid #334155;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         .logo-header {
-            font-size: 24px;
+            font-size: 1.5rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #ec4899, #d946ef);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #38BDF8;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 1.5rem;
             align-items: center;
         }
 
         .nav-links a {
-            color: #cbd5e1;
+            color: #F8FAFC;
             text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 14px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #ec4899;
+            color: #38BDF8;
+        }
+
+        .user-greeting {
+            color: #94A3B8;
+            font-size: 0.95rem;
         }
 
         .btn-logout {
-            background: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
-            color: white;
-            padding: 10px 20px;
+            background: #38BDF8;
+            color: #020617;
+            padding: 0.6rem 1.2rem;
             border: none;
             border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
-            font-size: 14px;
         }
 
         .btn-logout:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(236, 72, 153, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(56, 189, 248, 0.3);
+            background: #6366F1;
         }
 
         .container {
             max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
         }
 
         h1 {
-            font-size: 32px;
-            margin-bottom: 30px;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #F8FAFC;
+            font-weight: 700;
             text-align: center;
-            background: linear-gradient(135deg, #ec4899, #d946ef);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .games-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .game-card {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(45, 27, 105, 0.5) 100%);
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            border-radius: 12px;
-            padding: 20px;
+            background: #1E293B;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 1.5rem;
             text-align: center;
             transition: all 0.3s ease;
             cursor: pointer;
         }
 
         .game-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(236, 72, 153, 0.5);
-            box-shadow: 0 20px 40px rgba(236, 72, 153, 0.2);
+            transform: translateY(-6px);
+            border-color: #38BDF8;
+            box-shadow: 0 12px 28px rgba(56, 189, 248, 0.2);
         }
 
         .game-card .icon {
-            font-size: 60px;
-            margin-bottom: 10px;
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+            display: block;
         }
 
         .game-card h3 {
-            color: #e2e8f0;
-            margin-bottom: 5px;
-            font-size: 18px;
+            color: #F8FAFC;
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+            font-weight: 600;
         }
 
         .game-card p {
-            color: #94a3b8;
-            font-size: 13px;
-            margin-bottom: 15px;
+            color: #94A3B8;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
         }
 
-        .btn-select {
-            background: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
-            color: white;
-            padding: 10px 20px;
+        .btn-select, .btn-topup {
+            background: #38BDF8;
+            color: #020617;
+            padding: 0.6rem 1rem;
             border: none;
             border-radius: 6px;
             cursor: pointer;
+            font-size: 0.8rem;
             font-weight: 600;
-            width: 100%;
             transition: all 0.3s ease;
-            font-size: 14px;
+            width: 100%;
+            text-decoration: none;
+            display: inline-block;
         }
 
-        .btn-select:hover {
-            transform: scale(1.02);
-            box-shadow: 0 5px 15px rgba(236, 72, 153, 0.3);
+        .btn-select:hover, .btn-topup:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(56, 189, 248, 0.3);
+            background: #6366F1;
         }
 
         .section-title {
-            font-size: 24px;
-            margin: 40px 0 20px;
-            color: #e2e8f0;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #F8FAFC;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .transactions-table {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(45, 27, 105, 0.5) 100%);
-            border: 1px solid rgba(148, 163, 184, 0.2);
+            background: #1E293B;
+            border: 1px solid #334155;
             border-radius: 12px;
             overflow: hidden;
         }
@@ -200,14 +215,62 @@
             background: rgba(251, 146, 60, 0.2);
             color: #fdba74;
         }
+
+        .profile-icon-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #38BDF8 0%, #6366F1 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #020617;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid #334155;
+        }
+
+        .profile-icon-link:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4);
+            border-color: #38BDF8;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo-header">🎮 Game TopUp</div>
+        <div class="logo-header">
+            <i class="fas fa-gamepad"></i>
+            GameTopup
+        </div>
         <div class="nav-links">
-            <a href="{{ route('home') }}">Dashboard</a>
+            <span class="user-greeting">Halo, {{ auth()->user()->name }}! 👋</span>
             <a href="{{ route('topup.index') }}">Top Up</a>
+            <a href="{{ route('profile') }}" class="profile-icon-link" title="Profile Saya">
+                {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+            </a>
             <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                 @csrf
                 <button type="submit" class="btn-logout">Logout</button>
@@ -221,7 +284,24 @@
         <div class="games-grid">
             @forelse ($games as $game)
                 <div class="game-card">
-                    <div class="icon">{{ $game->icon }}</div>
+                    @php
+                        $gameImages = [
+                            'Mobile Legends' => 'ml.png',
+                            'PUBG Mobile' => 'PUBG.png',
+                            'Free Fire' => 'FF.png',
+                            'Genshin Impact' => 'GENSHIN.png',
+                            'Call of Duty Mobile' => 'HONKAI.png',
+                            'Valorant' => 'AOV.png',
+                        ];
+                        $imgFile = $gameImages[$game->name] ?? null;
+                    @endphp
+
+                    @if ($imgFile && file_exists(public_path('images/games/' . $imgFile)))
+                        <span class="icon"><img src="{{ asset('images/games/' . $imgFile) }}" alt="{{ $game->name }}" style="width: 100%; height: 100%; object-fit: contain;"></span>
+                    @else
+                        <div class="icon">{{ $game->icon }}</div>
+                    @endif
+
                     <h3>{{ $game->name }}</h3>
                     <p>{{ $game->currency_type }}</p>
                     <a href="{{ route('topup.show', $game) }}" class="btn-select">Pilih Game</a>
