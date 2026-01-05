@@ -41,8 +41,7 @@ class SaldoController extends Controller
 
         // Simulasi pembayaran berhasil
         $user = Auth::user();
-        $user->balance += $request->amount;
-        $user->save();
+        $user->addBalance($request->amount);
 
         return redirect()->route('saldo.index')->with('success', 'Top up berhasil! Saldo Anda telah ditambahkan.');
     }

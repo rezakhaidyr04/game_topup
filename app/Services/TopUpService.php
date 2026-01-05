@@ -29,9 +29,20 @@ class TopUpService
                     ->where('game_id', $game->id)
                     ->firstOrFail();
 
+                // Dapatkan user yang sedang login
+                $user = auth()->user();
+                
+                // Validasi saldo mencukupi
+                if (!$user->hasSufficientBalance($topup->price)) {
+                    throw new Exception('Saldo tidak mencukupi. Silakan top up saldo terlebih dahulu.');
+                }
+
+                // Kurangi saldo user
+                $user->deductBalance($topup->price);
+
                 // Buat transaksi baru
                 $transaction = Transaction::create([
-                    'user_id' => auth()->id(),
+                    'user_id' => $user->id,
                     'game_id' => $game->id,
                     'topup_id' => $topup->id,
                     'amount' => $topup->amount,

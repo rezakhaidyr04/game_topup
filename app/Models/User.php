@@ -44,4 +44,44 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Tambah saldo user
+     *
+     * @param float $amount
+     * @return bool
+     */
+    public function addBalance(float $amount): bool
+    {
+        $this->balance += $amount;
+        return $this->save();
+    }
+
+    /**
+     * Kurangi saldo user
+     *
+     * @param float $amount
+     * @return bool
+     * @throws \Exception
+     */
+    public function deductBalance(float $amount): bool
+    {
+        if ($this->balance < $amount) {
+            throw new \Exception('Saldo tidak mencukupi');
+        }
+        
+        $this->balance -= $amount;
+        return $this->save();
+    }
+
+    /**
+     * Cek apakah saldo mencukupi
+     *
+     * @param float $amount
+     * @return bool
+     */
+    public function hasSufficientBalance(float $amount): bool
+    {
+        return $this->balance >= $amount;
+    }
 }
