@@ -6,21 +6,36 @@
     <title>Edit Paket TopUp - Admin</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body{font-family:'Inter',sans-serif;background:#0f172a;color:#f8fafc;margin:0}
-        header{background:#020617;padding:1rem 2rem;border-bottom:1px solid #334155}
-        .container{max-width:800px;margin:2rem auto;padding:0 1rem}
-        .card{background:#0b1220;padding:1rem;border-radius:8px;border:1px solid #334155}
-        label{display:block;margin-top:8px;color:#94a3b8}
-        input,select{width:100%;padding:8px;margin-top:6px;border-radius:6px;border:1px solid #334155;background:#071028;color:#fff}
-        button.btn{background:#38bdf8;color:#020617;padding:8px 12px;border-radius:6px;border:none;margin-top:12px}
+        :root{--bg:#0f172a;--panel:#0b1220;--muted:#94a3b8;--border:#334155;--accent:#38bdf8;--text:#f8fafc}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);margin:0}
+        header{background:#020617;padding:1rem 2rem;border-bottom:1px solid var(--border)}
+        .container{max-width:720px;margin:2rem auto;padding:0 1rem}
+        .card{background:var(--panel);padding:1.25rem;border-radius:10px;border:1px solid var(--border)}
+        label{display:block;margin-top:8px;color:var(--muted);font-weight:600}
+        input,select{width:100%;padding:10px;margin-top:6px;border-radius:8px;border:1px solid var(--border);background:#071028;color:var(--text)}
+        .btn{background:var(--accent);color:#020617;padding:10px 14px;border-radius:8px;border:none;margin-top:12px;font-weight:700}
+        .error{background:#3b0f0f;padding:10px;border-radius:6px;margin-bottom:10px;color:#fff}
+        a.back{color:var(--muted);display:inline-block;margin-bottom:8px}
     </style>
 </head>
 <body>
     <header>
-        <div style="font-weight:700;color:#38BDF8">Admin - Edit Paket TopUp</div>
+        <div style="font-weight:700;color:var(--accent)">Admin - Edit Paket TopUp</div>
     </header>
     <div class="container">
-        <a href="{{ route('admin.topups.index') }}" style="color:#94a3b8;display:inline-block;margin-bottom:8px">&larr; Kembali</a>
+        <a href="{{ route('admin.topups.index') }}" class="back">&larr; Kembali</a>
+
+        @if($errors->any())
+            <div class="error">
+                <strong>Terdapat kesalahan:</strong>
+                <ul style="margin:8px 0 0;padding-left:18px">
+                    @foreach($errors->all() as $e)
+                        <li>{{ $e }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="card">
             <form action="{{ route('admin.topups.update', $topup) }}" method="POST">
                 @csrf
