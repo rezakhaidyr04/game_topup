@@ -339,42 +339,34 @@
         <div class="section">
             <h2><i class="fas fa-mobile-alt"></i> Game Populer</h2>
             <div class="game-grid">
-                <div class="game-card">
-                    <span class="icon"><img src="{{ asset('images/games/ml.png') }}" alt="Mobile Legends" style="width: 100%; height: 100%; object-fit: contain;"></span>
-                    <h4>Mobile Legends</h4>
-                    <p>Top Up Diamond</p>
-                    <a href="{{ route('topup.index') }}" class="btn-topup">Topup Sekarang</a>
-                </div>
-                <div class="game-card">
-                    <span class="icon"><img src="{{ asset('images/games/PUBG.png') }}" alt="PUBG Mobile" style="width: 100%; height: 100%; object-fit: contain;"></span>
-                    <h4>PUBG Mobile</h4>
-                    <p>Top Up UC</p>
-                    <a href="{{ route('topup.index') }}" class="btn-topup">Topup Sekarang</a>
-                </div>
-                <div class="game-card">
-                    <span class="icon"><img src="{{ asset('images/games/FF.png') }}" alt="Free Fire" style="width: 100%; height: 100%; object-fit: contain;"></span>
-                    <h4>Free Fire</h4>
-                    <p>Top Up Diamond</p>
-                    <a href="{{ route('topup.index') }}" class="btn-topup">Topup Sekarang</a>
-                </div>
-                <div class="game-card">
-                    <span class="icon"><img src="{{ asset('images/games/AOV.png') }}" alt="Arena of Valor" style="width: 100%; height: 100%; object-fit: contain;"></span>
-                    <h4>Arena of Valor</h4>
-                    <p>Top Up CP</p>
-                    <a href="{{ route('topup.index') }}" class="btn-topup">Topup Sekarang</a>
-                </div>
-                <div class="game-card">
-                    <span class="icon"><img src="{{ asset('images/games/GENSHIN.png') }}" alt="Genshin Impact" style="width: 100%; height: 100%; object-fit: contain;"></span>
-                    <h4>Genshin Impact</h4>
-                    <p>Top Up Crystals</p>
-                    <a href="{{ route('topup.index') }}" class="btn-topup">Topup Sekarang</a>
-                </div>
-                <div class="game-card">
-                    <span class="icon"><img src="{{ asset('images/games/HONKAI.png') }}" alt="Honkai Star Rail" style="width: 100%; height: 100%; object-fit: contain;"></span>
-                    <h4>Honkai Star Rail</h4>
-                    <p>Top Up Crystals</p>
-                    <a href="{{ route('topup.index') }}" class="btn-topup">Topup Sekarang</a>
-                </div>
+                @forelse ($games as $game)
+                    <div class="game-card">
+                        @php
+                            $gameImages = [
+                                'Mobile Legends' => 'ml.png',
+                                'PUBG Mobile' => 'PUBG.png',
+                                'Free Fire' => 'FF.png',
+                                'Genshin Impact' => 'GENSHIN.png',
+                                'Call of Duty Mobile' => 'HONKAI.png',
+                                'Arena of Valor' => 'AOV.png',
+                                'Honkai Star Rail' => 'HONKAI.png',
+                            ];
+                            $imgFile = $gameImages[$game->name] ?? null;
+                        @endphp
+                        
+                        @if ($imgFile && file_exists(public_path('images/games/' . $imgFile)))
+                            <span class="icon"><img src="{{ asset('images/games/' . $imgFile) }}" alt="{{ $game->name }}" style="width: 100%; height: 100%; object-fit: contain;"></span>
+                        @else
+                            <div class="icon">{{ $game->icon }}</div>
+                        @endif
+                        
+                        <h4>{{ $game->name }}</h4>
+                        <p>Top Up {{ $game->currency_type }}</p>
+                        <a href="{{ route('topup.show', $game) }}" class="btn-topup">Topup Sekarang</a>
+                    </div>
+                @empty
+                    <p style="color: #94a3b8; grid-column: 1/-1; text-align: center;">Belum ada game tersedia</p>
+                @endforelse
             </div>
         </div>
     </div>

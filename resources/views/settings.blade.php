@@ -656,22 +656,6 @@
                         </label>
                     </div>
                 </div>
-
-                <div class="setting-item">
-                    <div class="setting-info">
-                        <div class="setting-label">
-                            <i class="fas fa-newspaper"></i>
-                            Newsletter
-                        </div>
-                        <div class="setting-description">Terima newsletter mingguan</div>
-                    </div>
-                    <div class="setting-action">
-                        <label class="toggle-switch">
-                            <input type="checkbox">
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
             </div>
 
             <!-- Privacy Settings -->
@@ -684,19 +668,6 @@
                 <div class="setting-item">
                     <div class="setting-info">
                         <div class="setting-label">
-                            <i class="fas fa-key"></i>
-                            Autentikasi Dua Faktor
-                        </div>
-                        <div class="setting-description">Tambahkan lapisan keamanan ekstra</div>
-                    </div>
-                    <div class="setting-action">
-                        <a href="#" class="btn-secondary">Aktifkan</a>
-                    </div>
-                </div>
-
-                <div class="setting-item">
-                    <div class="setting-info">
-                        <div class="setting-label">
                             <i class="fas fa-history"></i>
                             Riwayat Login
                         </div>
@@ -704,22 +675,6 @@
                     </div>
                     <div class="setting-action">
                         <a href="#" class="btn-setting">Lihat</a>
-                    </div>
-                </div>
-
-                <div class="setting-item">
-                    <div class="setting-info">
-                        <div class="setting-label">
-                            <i class="fas fa-user-secret"></i>
-                            Mode Privasi
-                        </div>
-                        <div class="setting-description">Sembunyikan profil dari pencarian</div>
-                    </div>
-                    <div class="setting-action">
-                        <label class="toggle-switch">
-                            <input type="checkbox">
-                            <span class="slider"></span>
-                        </label>
                     </div>
                 </div>
             </div>
@@ -765,19 +720,6 @@
                     Zona Berbahaya
                 </h3>
                 
-                <div class="setting-item">
-                    <div class="setting-info">
-                        <div class="setting-label">
-                            <i class="fas fa-user-slash"></i>
-                            Nonaktifkan Akun
-                        </div>
-                        <div class="setting-description">Nonaktifkan akun sementara (dapat diaktifkan kembali)</div>
-                    </div>
-                    <div class="setting-action">
-                        <button class="btn-danger">Nonaktifkan</button>
-                    </div>
-                </div>
-
                 <div class="setting-item">
                     <div class="setting-info">
                         <div class="setting-label">
