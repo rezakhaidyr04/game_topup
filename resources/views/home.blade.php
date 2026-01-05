@@ -319,7 +319,7 @@
                     <div class="icon">💰</div>
                     <h3>Lihat Saldo</h3>
                     <p>Cek saldo akun Anda</p>
-                    <a href="#">Coming Soon</a>
+                    <a href="{{ route('saldo.index') }}">Lihat Saldo →</a>
                 </div>
                 <div class="action-card">
                     <div class="icon">📊</div>

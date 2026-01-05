@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TopUpController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SaldoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -29,6 +30,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/settings', function () {
         return view('settings');
     })->name('settings');
+    
+    // Saldo Routes
+    Route::get('/saldo', [SaldoController::class, 'index'])->name('saldo.index');
+    Route::post('/saldo/topup', [SaldoController::class, 'topup'])->name('saldo.topup');
+    Route::post('/saldo/confirm', [SaldoController::class, 'confirm'])->name('saldo.confirm');
+    
     Route::get('/topup', [TopUpController::class, 'index'])->name('topup.index');
     Route::get('/topup/game/{game}', [TopUpController::class, 'show'])->name('topup.show');
     Route::post('/topup/purchase', [TopUpController::class, 'purchase'])->name('topup.purchase');
