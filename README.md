@@ -23,6 +23,13 @@ Aplikasi web untuk platform penjualan top-up game online yang dibangun dengan La
 - Melihat riwayat transaksi
 - Manajemen profil dan pengaturan
 
+### Untuk Admin
+- Panel admin terpisah dengan autentikasi khusus
+- Dashboard dengan statistik games, top-up, dan transaksi
+- Manajemen katalog games dan paket top-up
+- Monitoring semua transaksi pengguna
+- Akses penuh ke data sistem
+
 ### Untuk Developer
 - Struktur kode yang bersih dan terorganisir
 - Service layer untuk business logic
@@ -86,9 +93,10 @@ DB_PASSWORD=
 php artisan migrate
 ```
 
-7. **Seed data (opsional)**
+7. **Jalankan migrasi dan seed data**
 ```bash
-php artisan db:seed
+php artisan migrate
+php artisan db:seed --class=AdminUserSeeder
 ```
 
 8. **Jalankan server**
@@ -99,7 +107,24 @@ npm run dev
 
 Aplikasi akan berjalan di `http://localhost:8000`
 
-## 📁 Struktur Direktori
+## � Akun Admin
+
+Setelah instalasi selesai, Anda dapat login sebagai admin dengan kredensial berikut:
+
+### **Email:** `admin@game-topup.com`
+### **Password:** `admin123`
+
+### Cara Login Admin:
+1. **Dari Website Utama:** Scroll ke bagian paling bawah dan klik tombol "Masuk sebagai Admin"
+2. **Langsung:** Kunjungi `http://localhost:8000/admin/login`
+
+### Fitur Admin:
+- Dashboard dengan statistik lengkap
+- Manajemen games dan paket top-up
+- Monitoring transaksi
+- Panel admin terpisah dari user biasa
+
+## �📁 Struktur Direktori
 
 ```
 game_topup/
@@ -136,11 +161,17 @@ game_topup/
 ## 🔑 Endpoint Utama
 
 ### Autentikasi
-- `GET /login` - Form login
-- `POST /login` - Proses login
+- `GET /login` - Form login pengguna
+- `POST /login` - Proses login pengguna
 - `GET /register` - Form registrasi
 - `POST /register` - Proses registrasi
 - `POST /logout` - Logout
+
+### Admin
+- `GET /admin/login` - Form login admin
+- `POST /admin/login` - Proses login admin
+- `GET /admin` - Dashboard admin
+- `GET /admin/topups` - Manajemen paket top-up
 
 ### Top-Up
 - `GET /topup` - Daftar game dan transaksi terbaru
@@ -156,7 +187,7 @@ game_topup/
 ## 💾 Database Schema
 
 ### Users
-- id, name, email, email_verified_at, password, remember_token, created_at, updated_at
+- id, name, email, email_verified_at, password, balance, role, remember_token, created_at, updated_at
 
 ### Games
 - id, name, icon, currency_type, min_price, max_price, created_at, updated_at

@@ -41,3 +41,17 @@ Route::middleware('auth')->group(function () {
     Route::post('/topup/purchase', [TopUpController::class, 'purchase'])->name('topup.purchase');
     Route::get('/topup/receipt/{transaction}', [TopUpController::class, 'receipt'])->name('topup.receipt');
 });
+
+// Admin routes
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::middleware('guest')->group(function () {
+        Route::get('/login', [\App\Http\Controllers\Admin\AuthController::class, 'showLogin'])->name('login');
+        Route::post('/login', [\App\Http\Controllers\Admin\AuthController::class, 'login'])->name('login.post');
+    });
+
+    Route::middleware('admin')->group(function () {
+        Route::post('/logout', [\App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('logout');
+        Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('topups', \App\Http\Controllers\Admin\TopUpController::class)->except(['show']);
+    });
+});

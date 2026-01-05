@@ -417,6 +417,65 @@
                 font-size: 0.85rem;
             }
 
+            /* Admin Login Section */
+            .admin-login-section {
+                max-width: 1200px;
+                margin: 1rem auto 0;
+                padding: 1rem;
+                background: rgba(15, 23, 42, 0.3);
+                border-radius: 8px;
+                border: 1px solid rgba(56, 189, 248, 0.1);
+            }
+
+            .admin-login-container {
+                max-width: 300px;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .admin-login-header {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                margin-bottom: 1rem;
+                color: #38BDF8;
+            }
+
+            .admin-login-header i {
+                font-size: 1rem;
+            }
+
+            .admin-login-header h4 {
+                margin: 0;
+                font-size: 0.9rem;
+                font-weight: 600;
+            }
+
+            .admin-login-form {
+                display: flex;
+                justify-content: center;
+            }
+
+            .admin-login-btn {
+                background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
+                color: #FFFFFF;
+                padding: 0.75rem 1.5rem;
+                border-radius: 8px;
+                text-decoration: none;
+                font-size: 0.9rem;
+                font-weight: 600;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                display: inline-block;
+            }
+
+            .admin-login-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+                text-decoration: none;
+                color: #FFFFFF;
+            }
+
             /* Responsive */
             @media (max-width: 768px) {
                 .hero-content h1 {
@@ -451,6 +510,19 @@
 
                 .pricing-card.featured {
                     transform: scale(1);
+                }
+
+                .admin-login-section {
+                    padding: 1rem 0.5rem;
+                }
+
+                .admin-login-container {
+                    max-width: 100%;
+                }
+
+                .admin-login-btn {
+                    padding: 0.6rem 1.2rem;
+                    font-size: 0.8rem;
                 }
             }
         </style>
@@ -680,6 +752,20 @@
                     </p>
                 </div>
             </div>
+
+            <!-- Admin Login Section -->
+            <div class="admin-login-section">
+                <div class="admin-login-container">
+                    <div class="admin-login-header">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>Admin Login</h4>
+                    </div>
+                    <div class="admin-login-form">
+                        <a href="{{ route('admin.login') }}" class="admin-login-btn">Masuk sebagai Admin</a>
+                    </div>
+                </div>
+            </div>
+
             <div class="footer-bottom">
                 <p>&copy; 2024 GameTopup. Semua Hak Dilindungi. | Dibuat dengan <i class="fas fa-heart" style="color: #e74c3c;"></i> untuk gamer Indonesia</p>
             </div>
