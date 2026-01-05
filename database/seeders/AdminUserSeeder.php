@@ -12,12 +12,15 @@ class AdminUserSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::create([
-            'name' => 'Admin',
-            'email' => 'admin@game-topup.com',
-            'password' => bcrypt('admin123'),
-            'role' => 'admin',
-            'balance' => 0,
-        ]);
+        \App\Models\User::updateOrCreate(
+            ['email' => 'admin@game-topup.com'], // Kondisi pencarian
+            [
+                'name' => 'Admin',
+                'email' => 'admin@game-topup.com',
+                'password' => bcrypt('admin123'),
+                'role' => 'admin',
+                'balance' => 0,
+            ]
+        );
     }
 }

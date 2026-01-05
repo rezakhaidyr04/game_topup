@@ -96,8 +96,10 @@ php artisan migrate
 7. **Jalankan migrasi dan seed data**
 ```bash
 php artisan migrate
-php artisan db:seed --class=AdminUserSeeder
+php artisan db:seed
 ```
+
+**Catatan:** Command `db:seed` akan otomatis membuat akun admin dengan email `admin@game-topup.com` dan password `admin123`.
 
 8. **Jalankan server**
 ```bash
@@ -123,7 +125,26 @@ Setelah instalasi selesai, Anda dapat login sebagai admin dengan kredensial beri
 - Manajemen games dan paket top-up
 - Monitoring transaksi
 - Panel admin terpisah dari user biasa
+### Untuk Kontributor GitHub:
+Jika Anda clone repository ini dari GitHub, ikuti langkah berikut untuk setup akun admin:
 
+1. **Pastikan database sudah di-migrasi:**
+```bash
+php artisan migrate
+```
+
+2. **Jalankan seeder untuk membuat akun admin:**
+```bash
+php artisan db:seed
+# atau spesifik untuk admin:
+php artisan db:seed --class=AdminUserSeeder
+```
+
+3. **Akun admin akan otomatis dibuat** dengan email `admin@game-topup.com` dan password `admin123`
+
+4. **Login sebagai admin** melalui salah satu cara di atas.
+
+**Catatan:** Seeder menggunakan `updateOrCreate`, jadi aman dijalankan berkali-kali tanpa duplikasi data.
 ## �📁 Struktur Direktori
 
 ```
@@ -214,6 +235,19 @@ MIT License - lihat file [LICENSE](LICENSE) untuk detail
 ## 👥 Kontribusi
 
 Kontribusi sangat diterima! Silakan buat pull request atau buka issue untuk saran dan perbaikan.
+
+### Setup untuk Kontributor:
+1. **Clone repository** dan ikuti langkah instalasi di atas
+2. **Setup akun admin** dengan menjalankan `php artisan db:seed`
+3. **Login sebagai admin** untuk testing fitur admin
+4. **Akses panel admin** di `http://localhost:8000/admin` untuk development
+
+### Development Admin Panel:
+- **Dashboard Admin:** `http://localhost:8000/admin`
+- **Manajemen Top-Up:** `http://localhost:8000/admin/topups`
+- **Login Admin:** `http://localhost:8000/admin/login`
+
+Akun admin default: `admin@game-topup.com` / `admin123`
 
 ## 📞 Support
 
