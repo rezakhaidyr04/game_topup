@@ -290,8 +290,8 @@
                             'PUBG Mobile' => 'PUBG.png',
                             'Free Fire' => 'FF.png',
                             'Genshin Impact' => 'GENSHIN.png',
-                            'Call of Duty Mobile' => 'HONKAI.png',
-                            'Valorant' => 'AOV.png',
+                            'Call of Duty Mobile' => 'COD.png',
+                            'Valorant' => 'valo.png',
                         ];
                         $imgFile = $gameImages[$game->name] ?? null;
                     @endphp

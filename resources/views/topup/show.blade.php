@@ -15,19 +15,19 @@
 
         body {
             font-family: 'Figtree', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #2d1b69 50%, #0f172a 100%);
-            background-attachment: fixed;
+            background: #0F172A;
             color: #e2e8f0;
             min-height: 100vh;
         }
 
         header {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(45, 27, 105, 0.6) 100%);
-            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+            background: #020617;
+            border-bottom: 1px solid #334155;
             padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         .logo-header {
@@ -102,8 +102,15 @@
         }
 
         .game-icon {
-            font-size: 80px;
+            font-size: 60px;
             margin-bottom: 20px;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .game-header h1 {
@@ -316,7 +323,26 @@
         <a href="{{ route('topup.index') }}" class="back-link">← Kembali</a>
 
         <div class="game-header">
-            <div class="game-icon">{{ $game->icon }}</div>
+            @php
+                $gameImages = [
+                    'Mobile Legends' => 'ml.png',
+                    'PUBG Mobile' => 'PUBG.png',
+                    'Free Fire' => 'FF.png',
+                    'Genshin Impact' => 'GENSHIN.png',
+                    'Call of Duty Mobile' => 'COD.png',
+                    'Valorant' => 'valo.png',
+                    'Arena of Valor' => 'AOV.png',
+                    'Honkai Star Rail' => 'HONKAI.png',
+                ];
+                $imgFile = $gameImages[$game->name] ?? null;
+            @endphp
+            
+            @if ($imgFile && file_exists(public_path('images/games/' . $imgFile)))
+                <div class="game-icon"><img src="{{ asset('images/games/' . $imgFile) }}" alt="{{ $game->name }}" style="width: 100%; height: 100%; object-fit: contain;"></div>
+            @else
+                <div class="game-icon">{{ $game->icon }}</div>
+            @endif
+            
             <h1>{{ $game->name }}</h1>
             <p>Pilih nominal top-up yang ingin dibeli</p>
         </div>
@@ -348,13 +374,13 @@
                 <input type="hidden" name="topup_id" id="topup_id">
 
                 <div class="form-group">
-                    <label>Paket: <span id="topup_name"></span></label>
-                    <input type="text" value="" disabled style="color: #94a3b8;">
+                    <label>Paket:</label>
+                    <input type="text" id="topup_name_display" value="" disabled style="color: #94a3b8;">
                 </div>
 
                 <div class="form-group">
-                    <label>Total Harga: Rp <span id="topup_price">0</span></label>
-                    <input type="text" value="" disabled style="color: #94a3b8;">
+                    <label>Total Harga:</label>
+                    <input type="text" id="topup_price_display" value="" disabled style="color: #94a3b8;">
                 </div>
 
                 <div class="form-group">
@@ -370,8 +396,8 @@
     <script>
         function openModal(topupId, topupName, topupPrice) {
             document.getElementById('topup_id').value = topupId;
-            document.getElementById('topup_name').textContent = topupName;
-            document.getElementById('topup_price').textContent = new Intl.NumberFormat('id-ID').format(topupPrice);
+            document.getElementById('topup_name_display').value = topupName;
+            document.getElementById('topup_price_display').value = 'Rp ' + new Intl.NumberFormat('id-ID').format(topupPrice);
             document.getElementById('purchaseModal').classList.add('active');
         }
 
