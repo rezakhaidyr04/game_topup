@@ -4,306 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $game->name }} - Game TopUp</title>
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: 'Figtree', sans-serif;
-            background: #0F172A;
-            color: #e2e8f0;
-            min-height: 100vh;
-        }
+        body { font-family: 'Inter', sans-serif; background: #0f172a; color: #f8fafc; min-height: 100vh; }
 
-        header {
-            background: #020617;
-            border-bottom: 1px solid #334155;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        }
+        header { background: #020617; border-bottom: 1px solid #334155; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
 
-        .logo-header {
-            font-size: 24px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #ec4899, #d946ef);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        .logo-header { font-size: 24px; font-weight: 700; color: #38BDF8; }
 
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
 
-        .nav-links a {
-            color: #cbd5e1;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 14px;
-        }
+        .nav-links a { color: #cbd5e1; text-decoration: none; font-weight: 600; transition: all 0.3s ease; font-size: 14px; }
 
-        .nav-links a:hover {
-            color: #ec4899;
-        }
+        .nav-links a:hover { color: #38BDF8; }
 
-        .btn-logout {
-            background: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 14px;
-        }
+        .btn-logout { background: #dc2626; color: #fff; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; font-size: 14px; }
 
-        .btn-logout:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(236, 72, 153, 0.3);
-        }
+        .btn-logout:hover { opacity: 0.95; transform: none; }
 
-        .container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
 
-        .back-link {
-            color: #ec4899;
-            text-decoration: none;
-            font-weight: 600;
-            margin-bottom: 20px;
-            display: inline-block;
-        }
+        .back-link { color: #38BDF8; text-decoration: none; font-weight: 600; margin-bottom: 20px; display: inline-block; }
 
-        .back-link:hover {
-            text-decoration: underline;
-        }
+        .back-link:hover { text-decoration: underline; }
 
-        .game-header {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(45, 27, 105, 0.5) 100%);
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            border-radius: 12px;
-            padding: 40px;
-            text-align: center;
-            margin-bottom: 40px;
-        }
+        .game-header { background: #111827; border: 1px solid rgba(148,163,184,0.06); border-radius: 12px; padding: 40px; text-align: center; margin-bottom: 40px; }
 
-        .game-icon {
-            font-size: 60px;
-            margin-bottom: 20px;
-            width: 120px;
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-left: auto;
-            margin-right: auto;
-        }
+        .game-icon { font-size: 60px; margin-bottom: 20px; width: 120px; height: 120px; display: flex; align-items: center; justify-content: center; margin-left: auto; margin-right: auto; }
 
-        .game-header h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #ec4899, #d946ef);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        .game-header h1 { font-size: 32px; margin-bottom: 10px; color: #f8fafc; }
 
-        .game-header p {
-            color: #94a3b8;
-            font-size: 16px;
-        }
+        .game-header p { color: #94a3b8; font-size: 16px; }
 
-        .topups-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
+        .topups-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px; }
 
-        .topup-card {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(45, 27, 105, 0.5) 100%);
-            border: 2px solid rgba(148, 163, 184, 0.2);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
+        .topup-card { background: #0b1220; border: 1px solid rgba(148,163,184,0.06); border-radius: 12px; padding: 20px; text-align: center; transition: all 0.3s ease; cursor: pointer; }
 
-        .topup-card:hover {
-            border-color: rgba(236, 72, 153, 0.5);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.2);
-        }
+        .topup-card:hover { border-color: #38BDF8; transform: translateY(-5px); box-shadow: 0 15px 40px rgba(56,189,248,0.08); }
 
-        .topup-card h3 {
-            font-size: 20px;
-            margin-bottom: 5px;
-            color: #e2e8f0;
-        }
+        .topup-card h3 { font-size: 20px; margin-bottom: 5px; color: #f8fafc; }
 
-        .topup-card .amount {
-            color: #94a3b8;
-            font-size: 14px;
-            margin-bottom: 15px;
-        }
+        .topup-card .amount { color: #94a3b8; font-size: 14px; margin-bottom: 15px; }
 
-        .topup-card .price {
-            font-size: 24px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #ec4899, #d946ef);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 15px;
-        }
+        .topup-card .price { font-size: 24px; font-weight: 700; color: #38BDF8; margin-bottom: 15px; }
 
-        .btn-buy {
-            background: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
-            color: white;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            width: 100%;
-            transition: all 0.3s ease;
-        }
+        .btn-buy { background: #38BDF8; color: #020617; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; width: 100%; transition: all 0.3s ease; }
 
-        .btn-buy:hover {
-            transform: scale(1.02);
-            box-shadow: 0 5px 15px rgba(236, 72, 153, 0.3);
-        }
+        .btn-buy:hover { transform: scale(1.02); box-shadow: 0 5px 15px rgba(56,189,248,0.18); }
 
-        .form-section {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(45, 27, 105, 0.5) 100%);
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            border-radius: 12px;
-            padding: 30px;
-            margin-top: 40px;
-        }
+        .form-section { background: #111827; border: 1px solid rgba(148,163,184,0.06); border-radius: 12px; padding: 30px; margin-top: 40px; }
 
-        .form-section h2 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #e2e8f0;
-        }
+        .form-section h2 { font-size: 24px; margin-bottom: 20px; color: #f8fafc; }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+        .form-group { margin-bottom: 20px; }
 
-        label {
-            display: block;
-            color: #cbd5e1;
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
+        label { display: block; color: #cbd5e1; font-weight: 600; margin-bottom: 8px; font-size: 14px; }
 
-        input[type="text"],
-        input[type="email"],
-        input[type="password"],
-        select {
-            width: 100%;
-            padding: 12px 15px;
-            background: rgba(15, 23, 42, 0.5);
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            border-radius: 8px;
-            color: #e2e8f0;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
+        input[type="text"], input[type="email"], input[type="password"], select { width: 100%; padding: 12px 15px; background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(148,163,184,0.06); border-radius: 8px; color: #f8fafc; font-size: 14px; transition: all 0.3s ease; }
 
-        input:focus,
-        select:focus {
-            outline: none;
-            border-color: rgba(236, 72, 153, 0.5);
-            background: rgba(15, 23, 42, 0.8);
-        }
+        input:focus, select:focus { outline: none; border-color: #38BDF8; background: rgba(15,23,42,0.8); }
 
-        input::placeholder {
-            color: #64748b;
-        }
+        input::placeholder { color: #64748b; }
 
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
+        .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); justify-content: center; align-items: center; z-index: 1000; }
 
-        .modal.active {
-            display: flex;
-        }
+        .modal.active { display: flex; }
 
-        .modal-content {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(45, 27, 105, 0.6) 100%);
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            border-radius: 12px;
-            padding: 40px;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-        }
+        .modal-content { background: #0b1220; border: 1px solid rgba(148,163,184,0.06); border-radius: 12px; padding: 40px; max-width: 500px; width: 90%; box-shadow: 0 25px 50px rgba(0,0,0,0.3); }
 
-        .modal h2 {
-            color: #e2e8f0;
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
+        .modal h2 { color: #f8fafc; margin-bottom: 20px; font-size: 24px; }
 
-        .modal-close {
-            background: none;
-            border: none;
-            color: #cbd5e1;
-            font-size: 24px;
-            cursor: pointer;
-            float: right;
-            transition: color 0.3s ease;
-        }
+        .modal-close { background: none; border: none; color: #cbd5e1; font-size: 24px; cursor: pointer; float: right; transition: color 0.3s ease; }
 
-        .modal-close:hover {
-            color: #ec4899;
-        }
+        .modal-close:hover { color: #38BDF8; }
 
-        .btn-submit {
-            background: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
-            color: white;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            width: 100%;
-            transition: all 0.3s ease;
-            margin-top: 20px;
-        }
+        .btn-submit { background: #38BDF8; color: #020617; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; width: 100%; transition: all 0.3s ease; margin-top: 20px; }
 
-        .btn-submit:hover {
-            transform: scale(1.02);
-            box-shadow: 0 5px 15px rgba(236, 72, 153, 0.3);
-        }
+        .btn-submit:hover { transform: scale(1.02); box-shadow: 0 5px 15px rgba(56,189,248,0.18); }
     </style>
 </head>
 <body>
