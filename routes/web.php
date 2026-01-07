@@ -52,6 +52,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('admin')->group(function () {
         Route::post('/logout', [\App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('logout');
         Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/recap', [\App\Http\Controllers\Admin\DashboardController::class, 'recap'])->name('recap.index');
         Route::resource('topups', \App\Http\Controllers\Admin\TopUpController::class)->except(['show']);
     });
 });

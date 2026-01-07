@@ -21,6 +21,7 @@
         <div style="display:flex;justify-content:space-between;align-items:center">
             <div style="font-weight:700;color:#38BDF8">Admin - GameTopup</div>
             <div>
+                <a href="{{ route('admin.recap.index') }}" class="btn" style="background:#10b981;margin-right:4px;">📊 Rekapan</a>
                 <a href="{{ route('admin.topups.index') }}" class="btn">Kelola Harga</a>
                 <form method="POST" action="{{ route('admin.logout') }}" style="display:inline;">
                     @csrf
