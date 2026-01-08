@@ -12,6 +12,72 @@ Aplikasi web untuk platform penjualan top-up game online yang dibangun dengan La
 - ✅ Riwayat transaksi pengguna
 - ✅ Manajemen profil pengguna
 - ✅ Sistem pembayaran (terintegrasi)
+- ✅ Kode promo/voucher (diskon)
+
+## 🎤 Materi Presentasi (Format Slide)
+
+### Slide 1 — Judul
+- Game TopUp: Platform Pembelian Top-Up Game
+- Fokus: transaksi top-up, saldo, dan promo diskon
+
+Catatan: Jelaskan bahwa aplikasi ini mensimulasikan pengalaman top-up end-to-end (user) dan kontrol operasional (admin).
+
+### Slide 2 — Masalah
+- Top-up game butuh alur yang cepat dan jelas
+- Pengguna ingin harga transparan + bukti transaksi
+- Admin butuh kontrol harga dan promo tanpa ribet
+
+Catatan: Tekankan 3 pain utama: user butuh proses cepat, butuh bukti, dan admin butuh pengelolaan harga/promo tanpa edit database manual.
+
+### Slide 3 — Solusi
+- Katalog game + paket top-up
+- Saldo user + pembelian yang aman (DB transaction)
+- Promo code/voucher untuk diskon otomatis
+
+Catatan: Jelaskan “aman” di sini artinya proses pembelian dibungkus transaksi database agar saldo & transaksi konsisten.
+
+### Slide 4 — Fitur Utama (User)
+- Login/registrasi
+- Pilih game → pilih paket → input ID/username game
+- (Opsional) input kode promo untuk diskon
+- Lihat struk transaksi + riwayat transaksi
+
+Catatan: Demo paling cepat: langsung ke Top Up, pilih game, masukkan akun game, isi promo (opsional), lalu lihat struk.
+
+### Slide 5 — Fitur Utama (Admin)
+- Dashboard statistik + monitoring transaksi
+- Kelola paket top-up (harga/nominal)
+- Kelola kode promo (CRUD: buat, edit, hapus)
+- Rekapan transaksi mingguan/bulanan
+
+Catatan: Jelaskan admin bisa membuat promo baru kapan saja (aktif/nonaktif, kuota, periode) tanpa deploy ulang.
+
+### Slide 6 — Demo Flow (Singkat)
+- User: top up saldo → beli paket topup → input promo → lihat struk
+- Admin: login → kelola promo → cek rekap transaksi
+
+Catatan: Saat demo, pakai 1 kode promo contoh (mis. HEMAT10) supaya terlihat efek diskon dan tercatat di struk.
+
+### Slide 7 — Nilai Tambah
+- Diskon otomatis (percent/fixed) + validasi periode/kuota
+- Struk menampilkan breakdown harga awal vs diskon
+- Rekapan admin memakai status transaksi yang benar
+
+Catatan: Poin penting untuk audiens: transparansi harga (breakdown) dan kontrol promo (aturan jelas).
+
+### Slide 8 — Tech Stack
+- Laravel 11 + Blade
+- MySQL
+- Vite (asset build)
+- PHPUnit (tes fitur)
+
+Catatan: Tekankan maintainability: ada service layer, request validation, dan test untuk memastikan diskon berjalan benar.
+
+### Catatan Teknis Singkat (untuk Q&A)
+- Promo code divalidasi: aktif, periode (starts/ends), minimal belanja, dan kuota pemakaian
+- Diskon mendukung `percent` dan `fixed`, dengan batas `max_discount`
+- Transaksi menyimpan `original_price`, `discount`, dan `price` (harga akhir) supaya riwayat tetap akurat
+- Admin bisa kelola promo di `/admin/promocodes`
 
 ## 🚀 Fitur Utama
 
@@ -20,6 +86,7 @@ Aplikasi web untuk platform penjualan top-up game online yang dibangun dengan La
 - Browse daftar game yang tersedia
 - Melihat paket top-up dengan harga
 - Membeli top-up dengan akun game
+- Input kode promo (opsional) untuk diskon
 - Melihat riwayat transaksi
 - Manajemen profil dan pengaturan
 
@@ -27,6 +94,7 @@ Aplikasi web untuk platform penjualan top-up game online yang dibangun dengan La
 - Panel admin terpisah dengan autentikasi khusus
 - Dashboard dengan statistik games, top-up, dan transaksi
 - Manajemen katalog games dan paket top-up
+- Manajemen kode promo/voucher
 - Monitoring semua transaksi pengguna
 - Akses penuh ke data sistem
 
@@ -193,6 +261,7 @@ game_topup/
 - `POST /admin/login` - Proses login admin
 - `GET /admin` - Dashboard admin
 - `GET /admin/topups` - Manajemen paket top-up
+- `GET /admin/promocodes` - Manajemen kode promo
 
 ### Top-Up
 - `GET /topup` - Daftar game dan transaksi terbaru
@@ -217,7 +286,10 @@ game_topup/
 - id, game_id, name, amount, price, created_at, updated_at
 
 ### Transactions
-- id, user_id, game_id, topup_id, amount, price, status, game_account, created_at, updated_at
+- id, user_id, game_id, topup_id, promo_code_id, promo_code, amount, original_price, discount, price, status, game_account, created_at, updated_at
+
+### Promo Codes
+- id, code, type (percent/fixed), value, min_purchase, max_discount, starts_at, ends_at, usage_limit, used_count, is_active, created_at, updated_at
 
 ## 🛡️ Keamanan
 

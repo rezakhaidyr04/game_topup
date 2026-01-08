@@ -34,6 +34,7 @@
             <div style="font-weight:700;color:#38BDF8">Admin - GameTopup</div>
             <div>
                 <a href="{{ route('admin.dashboard') }}" class="btn">Kembali ke Dashboard</a>
+                <a href="{{ route('admin.promocodes.index') }}" class="btn" style="margin-left:6px;">🏷️ Promo</a>
             </div>
         </div>
     </header>

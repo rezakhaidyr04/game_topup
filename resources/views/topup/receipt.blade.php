@@ -98,7 +98,6 @@
             margin: 30px 0;
             text-align: center;
         }
-        }
 
         .amount-label {
             color: #94a3b8;
@@ -221,6 +220,13 @@
                     <span class="detail-label">📅 Waktu</span>
                     <span class="detail-value">{{ $transaction->created_at->format('d M Y H:i') }}</span>
                 </div>
+
+                @if(!empty($transaction->promo_code))
+                    <div class="detail-row">
+                        <span class="detail-label">🏷️ Promo</span>
+                        <span class="detail-value">{{ $transaction->promo_code }}</span>
+                    </div>
+                @endif
             </div>
 
             <div class="divider"></div>
@@ -228,6 +234,11 @@
             <div class="amount-section">
                 <div class="amount-label">Total Pembayaran</div>
                 <div class="amount-value">Rp {{ number_format($transaction->price, 0, ',', '.') }}</div>
+                @if(($transaction->discount ?? 0) > 0)
+                    <div style="margin-top:10px;color:#94a3b8;font-size:13px">
+                        Harga awal: Rp {{ number_format($transaction->original_price, 0, ',', '.') }} • Diskon: Rp {{ number_format($transaction->discount, 0, ',', '.') }}
+                    </div>
+                @endif
             </div>
 
             <div class="btn-group">

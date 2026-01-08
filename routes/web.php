@@ -54,5 +54,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
         Route::get('/recap', [\App\Http\Controllers\Admin\DashboardController::class, 'recap'])->name('recap.index');
         Route::resource('topups', \App\Http\Controllers\Admin\TopUpController::class)->except(['show']);
+        Route::resource('promocodes', \App\Http\Controllers\Admin\PromoCodeController::class)->except(['show']);
     });
 });

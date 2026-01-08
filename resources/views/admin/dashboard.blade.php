@@ -23,6 +23,7 @@
             <div>
                 <a href="{{ route('admin.recap.index') }}" class="btn" style="background:#10b981;margin-right:4px;">📊 Rekapan</a>
                 <a href="{{ route('admin.topups.index') }}" class="btn">Kelola Harga</a>
+                <a href="{{ route('admin.promocodes.index') }}" class="btn" style="margin-left:4px;">🏷️ Promo</a>
                 <form method="POST" action="{{ route('admin.logout') }}" style="display:inline;">
                     @csrf
                     <button type="submit" style="background:#dc2626;color:#fff;border:none;padding:6px 10px;border-radius:6px;font-weight:600;cursor:pointer;">Logout</button>

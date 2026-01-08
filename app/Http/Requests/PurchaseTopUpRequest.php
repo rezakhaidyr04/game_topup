@@ -17,6 +17,7 @@ class PurchaseTopUpRequest extends FormRequest
             'game_id' => 'required|integer|exists:games,id',
             'topup_id' => 'required|integer|exists:top_ups,id',
             'game_account' => 'required|string|min:1|max:255',
+            'promo_code' => 'nullable|string|min:1|max:50',
         ];
     }
 
@@ -30,6 +31,7 @@ class PurchaseTopUpRequest extends FormRequest
             'game_account.required' => 'Akun game harus diisi',
             'game_account.min' => 'Akun game minimal 1 karakter',
             'game_account.max' => 'Akun game maksimal 255 karakter',
+            'promo_code.max' => 'Kode promo maksimal 50 karakter',
         ];
     }
 }

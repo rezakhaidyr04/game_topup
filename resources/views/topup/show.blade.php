@@ -167,6 +167,11 @@
                     <input type="text" id="game_account" name="game_account" placeholder="Masukkan ID atau username game Anda" required>
                 </div>
 
+                <div class="form-group">
+                    <label for="promo_code">Kode Promo (Opsional)</label>
+                    <input type="text" id="promo_code" name="promo_code" placeholder="Contoh: HEMAT10">
+                </div>
+
                 <button type="submit" class="btn-submit">Lanjutkan Pembayaran</button>
             </form>
         </div>

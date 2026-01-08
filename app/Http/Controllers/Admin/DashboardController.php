@@ -28,14 +28,14 @@ class DashboardController extends Controller
         $endOfWeek = Carbon::now()->endOfWeek();
 
         $weeklyTransactions = Transaction::whereBetween('created_at', [$startOfWeek, $endOfWeek])
-            ->where('status', 'completed')
+            ->where('status', Transaction::STATUS_SUCCESS)
             ->get();
 
         $weeklyTotalTransactions = $weeklyTransactions->count();
         $weeklyTotalRevenue = $weeklyTransactions->sum('price');
 
         $weeklyDailyStats = Transaction::whereBetween('created_at', [$startOfWeek, $endOfWeek])
-            ->where('status', 'completed')
+            ->where('status', Transaction::STATUS_SUCCESS)
             ->select(
                 DB::raw('DATE(created_at) as date'),
                 DB::raw('COUNT(*) as count'),
@@ -46,7 +46,7 @@ class DashboardController extends Controller
             ->get();
 
         $weeklyTopGames = Transaction::whereBetween('created_at', [$startOfWeek, $endOfWeek])
-            ->where('status', 'completed')
+            ->where('status', Transaction::STATUS_SUCCESS)
             ->select('game_id', DB::raw('COUNT(*) as count'), DB::raw('SUM(price) as revenue'))
             ->groupBy('game_id')
             ->orderByDesc('count')
@@ -59,14 +59,14 @@ class DashboardController extends Controller
         $endOfMonth = Carbon::now()->endOfMonth();
 
         $monthlyTransactions = Transaction::whereBetween('created_at', [$startOfMonth, $endOfMonth])
-            ->where('status', 'completed')
+            ->where('status', Transaction::STATUS_SUCCESS)
             ->get();
 
         $monthlyTotalTransactions = $monthlyTransactions->count();
         $monthlyTotalRevenue = $monthlyTransactions->sum('price');
 
         $monthlyDailyStats = Transaction::whereBetween('created_at', [$startOfMonth, $endOfMonth])
-            ->where('status', 'completed')
+            ->where('status', Transaction::STATUS_SUCCESS)
             ->select(
                 DB::raw('DATE(created_at) as date'),
                 DB::raw('COUNT(*) as count'),
@@ -77,7 +77,7 @@ class DashboardController extends Controller
             ->get();
 
         $monthlyTopGames = Transaction::whereBetween('created_at', [$startOfMonth, $endOfMonth])
-            ->where('status', 'completed')
+            ->where('status', Transaction::STATUS_SUCCESS)
             ->select('game_id', DB::raw('COUNT(*) as count'), DB::raw('SUM(price) as revenue'))
             ->groupBy('game_id')
             ->orderByDesc('count')
@@ -105,7 +105,7 @@ class DashboardController extends Controller
 
         // Total transaksi minggu ini
         $weeklyTransactions = Transaction::whereBetween('created_at', [$startOfWeek, $endOfWeek])
-            ->where('status', 'completed')
+            ->where('status', Transaction::STATUS_SUCCESS)
             ->get();
 
         $totalTransactions = $weeklyTransactions->count();
@@ -113,7 +113,7 @@ class DashboardController extends Controller
 
         // Transaksi per hari dalam minggu
         $dailyStats = Transaction::whereBetween('created_at', [$startOfWeek, $endOfWeek])
-            ->where('status', 'completed')
+            ->where('status', Transaction::STATUS_SUCCESS)
             ->select(
                 DB::raw('DATE(created_at) as date'),
                 DB::raw('COUNT(*) as count'),
@@ -125,7 +125,7 @@ class DashboardController extends Controller
 
         // Top games minggu ini
         $topGames = Transaction::whereBetween('created_at', [$startOfWeek, $endOfWeek])
-            ->where('status', 'completed')
+            ->where('status', Transaction::STATUS_SUCCESS)
             ->select('game_id', DB::raw('COUNT(*) as count'), DB::raw('SUM(price) as revenue'))
             ->groupBy('game_id')
             ->orderByDesc('count')
@@ -158,7 +158,7 @@ class DashboardController extends Controller
 
         // Total transaksi bulan ini
         $monthlyTransactions = Transaction::whereBetween('created_at', [$startOfMonth, $endOfMonth])
-            ->where('status', 'completed')
+            ->where('status', Transaction::STATUS_SUCCESS)
             ->get();
 
         $totalTransactions = $monthlyTransactions->count();
@@ -166,7 +166,7 @@ class DashboardController extends Controller
 
         // Transaksi per minggu dalam bulan
         $weeklyStats = Transaction::whereBetween('created_at', [$startOfMonth, $endOfMonth])
-            ->where('status', 'completed')
+            ->where('status', Transaction::STATUS_SUCCESS)
             ->select(
                 DB::raw('WEEK(created_at, 1) as week'),
                 DB::raw('COUNT(*) as count'),
@@ -178,7 +178,7 @@ class DashboardController extends Controller
 
         // Transaksi per hari dalam bulan
         $dailyStats = Transaction::whereBetween('created_at', [$startOfMonth, $endOfMonth])
-            ->where('status', 'completed')
+            ->where('status', Transaction::STATUS_SUCCESS)
             ->select(
                 DB::raw('DATE(created_at) as date'),
                 DB::raw('COUNT(*) as count'),
@@ -190,7 +190,7 @@ class DashboardController extends Controller
 
         // Top games bulan ini
         $topGames = Transaction::whereBetween('created_at', [$startOfMonth, $endOfMonth])
-            ->where('status', 'completed')
+            ->where('status', Transaction::STATUS_SUCCESS)
             ->select('game_id', DB::raw('COUNT(*) as count'), DB::raw('SUM(price) as revenue'))
             ->groupBy('game_id')
             ->orderByDesc('count')
