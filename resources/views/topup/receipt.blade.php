@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bukti Pembayaran - Game TopUp</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,10 +14,9 @@
         }
 
         body {
-            font-family: 'Figtree', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #2d1b69 50%, #0f172a 100%);
-            background-attachment: fixed;
-            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -31,11 +30,11 @@
         }
 
         .receipt-card {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(45, 27, 105, 0.6) 100%);
-            border: 1px solid rgba(148, 163, 184, 0.2);
+            background: #111827;
+            border: 1px solid rgba(148, 163, 184, 0.06);
             border-radius: 12px;
             padding: 40px;
-            box-shadow: 0 25px 50px rgba(236, 72, 153, 0.15);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
         }
 
         .success-icon {
@@ -52,7 +51,7 @@
 
         h1 {
             text-align: center;
-            color: #4ade80;
+            color: #f8fafc;
             margin-bottom: 10px;
             font-size: 28px;
         }
@@ -66,7 +65,7 @@
 
         .divider {
             height: 1px;
-            background: rgba(148, 163, 184, 0.2);
+            background: rgba(148, 163, 184, 0.06);
             margin: 30px 0;
         }
 
@@ -87,17 +86,18 @@
         }
 
         .detail-value {
-            color: #e2e8f0;
+            color: #f8fafc;
             text-align: right;
         }
 
         .amount-section {
             background: rgba(15, 23, 42, 0.5);
-            border: 1px solid rgba(236, 72, 153, 0.3);
+            border: 1px solid rgba(148, 163, 184, 0.06);
             border-radius: 8px;
             padding: 20px;
             margin: 30px 0;
             text-align: center;
+        }
         }
 
         .amount-label {
@@ -109,15 +109,12 @@
         .amount-value {
             font-size: 32px;
             font-weight: 700;
-            background: linear-gradient(135deg, #ec4899, #d946ef);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #38BDF8;
         }
 
         .receipt-id {
             background: rgba(15, 23, 42, 0.5);
-            border: 1px solid rgba(148, 163, 184, 0.2);
+            border: 1px solid rgba(148, 163, 184, 0.06);
             border-radius: 8px;
             padding: 12px;
             text-align: center;
@@ -135,45 +132,48 @@
 
         .btn-group {
             display: flex;
-            gap: 10px;
+            gap: 15px;
+            margin-top: 30px;
         }
 
         .btn {
             flex: 1;
-            padding: 12px;
+            padding: 12px 24px;
             border: none;
             border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
             font-size: 14px;
             transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
-            color: white;
+            background: #38BDF8;
+            color: #020617;
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(236, 72, 153, 0.3);
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(56, 189, 248, 0.18);
         }
 
         .btn-secondary {
-            background: rgba(15, 23, 42, 0.5);
-            color: #cbd5e1;
-            border: 1px solid rgba(148, 163, 184, 0.2);
+            background: transparent;
+            color: #38BDF8;
+            border: 1px solid #38BDF8;
         }
 
         .btn-secondary:hover {
-            border-color: rgba(236, 72, 153, 0.5);
-            color: #e2e8f0;
+            background: rgba(56, 189, 248, 0.1);
+            transform: scale(1.02);
         }
 
         .status-badge {
             display: inline-block;
-            background: rgba(34, 197, 94, 0.2);
-            color: #86efac;
+            background: rgba(56, 189, 248, 0.1);
+            color: #38BDF8;
             padding: 6px 12px;
             border-radius: 20px;
             font-size: 12px;
