@@ -558,13 +558,11 @@
                     <h1>Top Up Game Aman & Terpercaya</h1>
                     <p>Layanan top up game online tercepat dengan harga paling kompetitif. Proses instan, aman, dan terjamin 100%</p>
                     <div class="hero-buttons">
+                        <a href="{{ route('topup.index') }}" class="btn btn-primary">Mulai Top Up</a>
                         @if (Route::has('login'))
-                            @auth
-                                <a href="{{ url('/dashboard') }}" class="btn btn-primary">Mulai Top Up</a>
-                            @else
-                                <a href="{{ route('register') }}" class="btn btn-primary">Daftar Sekarang</a>
-                                <a href="{{ route('login') }}" class="btn btn-secondary">Login</a>
-                            @endauth
+                            @guest
+                                <a href="{{ route('register') }}" class="btn btn-secondary">Daftar Sekarang</a>
+                            @endguest
                         @endif
                     </div>
                 </div>
