@@ -4,128 +4,644 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Kelola Promo Code - Admin</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root{--bg:#0f172a;--panel:#0b1220;--muted:#94a3b8;--border:#334155;--accent:#38bdf8;--card:#111827;--text:#f8fafc}
-        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);margin:0}
-        header{background:#020617;padding:1rem 2rem;border-bottom:1px solid var(--border)}
-        .container{max-width:1100px;margin:2rem auto;padding:0 1rem}
-        .toolbar{display:flex;gap:1rem;align-items:center;justify-content:space-between;margin-bottom:16px}
-        .filters{display:flex;gap:8px;align-items:center}
-        .input,select{background:#071028;border:1px solid var(--border);color:var(--text);padding:8px 10px;border-radius:8px}
-        .btn{background:var(--accent);color:#020617;padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:700;border:1px solid rgba(56,189,248,0.12)}
-        .panel{background:var(--panel);padding:12px;border-radius:10px;border:1px solid var(--border)}
-        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
-        .card{background:var(--card);padding:12px;border-radius:10px;border:1px solid var(--border);display:flex;gap:10px;align-items:center}
-        .avatar{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#0b1220,#071028);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent);font-size:14px;border:1px solid rgba(56,189,248,0.06)}
-        .meta{flex:1}
-        .meta .title{font-weight:800;font-size:16px}
-        .meta .sub{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.4}
-        .badge{display:inline-block;padding:3px 8px;border-radius:999px;font-size:12px;font-weight:700}
-        .badge-on{background:#10b98144;color:#10b981}
-        .badge-off{background:#dc262644;color:#dc2626}
-        .actions{display:flex;gap:8px}
-        .danger{background:#ef4444;color:#fff;padding:8px 10px;border-radius:8px;border:none;font-weight:700;cursor:pointer}
-        .muted{color:var(--muted)}
-        .pager{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
-        .pagination{display:flex;gap:8px;align-items:center}
-        .page{display:inline-block;padding:6px 10px;border-radius:6px;background:transparent;border:1px solid transparent;color:var(--muted);text-decoration:none}
-        .page.current{background:rgba(56,189,248,0.12);color:var(--accent);border-color:rgba(56,189,248,0.12);font-weight:800}
-        .page.disabled{opacity:0.5;pointer-events:none}
-        @media(max-width:700px){.filters{flex-direction:column;align-items:stretch}}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%);
+            background-attachment: fixed;
+            color: #2d3748; 
+            margin: 0;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.03) 0%, transparent 50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+            box-shadow: 0 2px 20px rgba(99, 102, 241, 0.08);
+            backdrop-filter: blur(20px);
+            position: relative;
+            z-index: 10;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), rgba(139, 92, 246, 0.3), transparent);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo-header {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #6366f1;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-header i {
+            color: #8b5cf6;
+            font-size: 1.8rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+        }
+
+        a.btn {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: #fff;
+            padding: 0.65rem 1.2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        a.btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.3);
+        }
+
+        a.btn.btn-success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+        }
+
+        a.btn.btn-success:hover {
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
+        }
+
+        a.btn.btn-warning {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+        }
+
+        a.btn.btn-warning:hover {
+            box-shadow: 0 6px 16px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-logout {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: #fff;
+            border: none;
+            padding: 0.65rem 1.2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-logout:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(239, 68, 68, 0.3);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-section {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .welcome-section h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-section p {
+            color: #64748b;
+            font-size: 1.05rem;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+            border-radius: 18px;
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.06);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.15);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 2px 4px rgba(99, 102, 241, 0.2));
+        }
+
+        .card-label {
+            font-size: 0.875rem;
+            color: #94a3b8;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.75rem;
+            margin: 3rem 0 1.5rem;
+            color: #6366f1;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .section-title i {
+            color: #8b5cf6;
+        }
+
+        .table-container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1.5rem;
+            border-radius: 18px;
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.06);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.15);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.8rem;
+            color: #6366f1;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            color: #475569;
+        }
+
+        tbody tr {
+            transition: all 0.3s ease;
+        }
+
+        tbody tr:hover {
+            background: rgba(99, 102, 241, 0.04);
+        }
+
+        .status-badge {
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .status-success {
+            background: rgba(16, 185, 129, 0.15);
+            color: #059669;
+        }
+
+        .status-pending {
+            background: rgba(245, 158, 11, 0.15);
+            color: #d97706;
+        }
+
+        .status-failed {
+            background: rgba(239, 68, 68, 0.15);
+            color: #dc2626;
+        }
+
+        /* Menu Grid Styles */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0 3rem;
+        }
+
+        .menu-card {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+            border-radius: 18px;
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.06);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .menu-card.menu-success::before {
+            background: linear-gradient(90deg, #10b981, #059669);
+        }
+
+        .menu-card.menu-warning::before {
+            background: linear-gradient(90deg, #f59e0b, #d97706);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.15);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .menu-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .menu-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .menu-card.menu-success .menu-icon {
+            background: linear-gradient(135deg, #10b981, #059669);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .menu-card.menu-warning .menu-icon {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        }
+
+        .menu-card:hover .menu-icon {
+            transform: rotate(5deg) scale(1.1);
+        }
+
+        .menu-content {
+            flex: 1;
+        }
+
+        .menu-content h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.4rem;
+        }
+
+        .menu-content p {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin: 0;
+        }
+
+        .menu-arrow {
+            font-size: 1.2rem;
+            color: #cbd5bd;
+            transition: all 0.3s ease;
+        }
+
+        .menu-card:hover .menu-arrow {
+            color: #6366f1;
+            transform: translateX(5px);
+        }
+
+        .menu-card.menu-success:hover .menu-arrow {
+            color: #10b981;
+        }
+
+        .menu-card.menu-warning:hover .menu-arrow {
+            color: #f59e0b;
+        }
+
+        .divider {
+            margin: 3rem 0 1.5rem;
+        }
+
+        .divider-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #6366f1;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .divider-text i {
+            color: #8b5cf6;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .welcome-section h1 {
+                font-size: 1.6rem;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-        <div style="display:flex;justify-content:space-between;align-items:center">
-            <div style="font-weight:700;color:var(--accent)">Admin - Kelola Promo</div>
-            <div>
-                <a href="{{ route('admin.dashboard') }}" class="btn" style="background:transparent;border:1px solid var(--border);color:var(--muted);margin-right:6px;">Dashboard</a>
-                <a href="{{ route('admin.promocodes.create') }}" class="btn">+ Tambah Promo</a>
+        <div class="header-content">
+            <div class="logo-header">
+                <i class="fas fa-shield-halved"></i>
+                Admin Panel
+            </div>
+            <div class="nav-buttons">
+                <a href="{{ route('admin.dashboard') }}" class="btn btn-success">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="{{ route('admin.recap.index') }}" class="btn">
+                    <i class="fas fa-chart-line"></i> Rekap
+                </a>
             </div>
         </div>
     </header>
 
     <div class="container">
-        <form method="GET" action="" class="toolbar">
-            <div class="filters">
-                <input name="q" value="{{ request('q') }}" class="input" placeholder="Cari kode / tipe...">
-                <select name="is_active" class="input">
+        <div class="welcome-section">
+            <h1>🎟️ Kelola Promo Code</h1>
+            <p>Kelola kode promo & diskon untuk meningkatkan penjualan</p>
+        </div>
+
+        <div class="toolbar" style="display:flex;gap:1rem;align-items:center;justify-content:space-between;margin-bottom:2rem;">
+            <div class="filters" style="display:flex;gap:0.5rem;align-items:center;">
+                <input name="q" value="{{ request('q') }}" class="input" placeholder="Cari kode / tipe..." style="padding:0.5rem;border:1px solid rgba(99,102,241,0.2);border-radius:8px;background:rgba(255,255,255,0.8);color:#475569;">
+                <select name="is_active" class="input" style="padding:0.5rem;border:1px solid rgba(99,102,241,0.2);border-radius:8px;background:rgba(255,255,255,0.8);color:#475569;">
                     <option value="">Semua Status</option>
                     <option value="1" {{ request('is_active') === '1' ? 'selected' : '' }}>Aktif</option>
                     <option value="0" {{ request('is_active') === '0' ? 'selected' : '' }}>Nonaktif</option>
                 </select>
-                <button type="submit" class="btn">Filter</button>
-                <a href="{{ route('admin.promocodes.index') }}" class="btn" style="background:transparent;border:1px solid var(--border);color:var(--muted)">Reset</a>
+                <button type="submit" class="btn" style="padding:0.5rem 1rem;">Filter</button>
+                <a href="{{ route('admin.promocodes.index') }}" class="btn" style="background:transparent;border:1px solid rgba(99,102,241,0.2);color:#64748b;">Reset</a>
             </div>
-            <div class="muted">Menampilkan {{ $promoCodes->count() }} dari {{ $promoCodes->total() }} promo</div>
-        </form>
+            <a href="{{ route('admin.promocodes.create') }}" class="btn">
+                <i class="fas fa-plus"></i> Tambah Promo
+            </a>
+        </div>
 
         @if(session('success'))
-            <div style="background:#052e2e;padding:10px;border-radius:6px;margin-bottom:10px">{{ session('success') }}</div>
+            <div style="background:rgba(16,185,129,0.1);color:#059669;padding:1rem;border-radius:8px;margin-bottom:1rem;border:1px solid rgba(16,185,129,0.2);">{{ session('success') }}</div>
         @endif
 
-        <div class="panel">
-            <div class="grid">
-                @forelse($promoCodes as $p)
-                    <div class="card">
-                        <div class="avatar">{{ $p->type === 'percent' ? ($p->value . '%') : ('Rp' . number_format($p->value,0,',','.')) }}</div>
-                        <div class="meta">
-                            <div class="title">
-                                {{ $p->code }}
-                                @if($p->is_active)
-                                    <span class="badge badge-on">Aktif</span>
-                                @else
-                                    <span class="badge badge-off">Nonaktif</span>
-                                @endif
-                            </div>
-                            <div class="sub">
-                                Tipe: {{ $p->type }} • Min: {{ is_null($p->min_purchase) ? '-' : ('Rp ' . number_format($p->min_purchase,0,',','.')) }}
-                                • Max diskon: {{ is_null($p->max_discount) ? '-' : ('Rp ' . number_format($p->max_discount,0,',','.')) }}
-                                <br>
-                                Periode: {{ $p->starts_at ? $p->starts_at->format('d M Y') : '-' }} s/d {{ $p->ends_at ? $p->ends_at->format('d M Y') : '-' }}
-                                • Kuota: {{ is_null($p->usage_limit) ? '∞' : $p->usage_limit }} • Terpakai: {{ $p->used_count }}
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <a href="{{ route('admin.promocodes.edit', $p) }}" class="btn">Edit</a>
-                            <form action="{{ route('admin.promocodes.destroy', $p) }}" method="POST" onsubmit="return confirm('Hapus promo ini?')" style="display:inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="danger">Hapus</button>
-                            </form>
-                        </div>
-                    </div>
-                @empty
-                    <div class="muted">Belum ada promo</div>
-                @endforelse
-            </div>
+        <div class="table-container">
+            @if($promoCodes->isEmpty())
+                <p style="color:#94a3b8;text-align:center;padding:2rem;">Belum ada promo code</p>
+            @else
+            <table>
+                <thead>
+                    <tr>
+                        <th><i class="fas fa-tag"></i> Kode Promo</th>
+                        <th><i class="fas fa-percent"></i> Tipe & Nilai</th>
+                        <th><i class="fas fa-calendar"></i> Periode</th>
+                        <th><i class="fas fa-users"></i> Kuota</th>
+                        <th><i class="fas fa-info-circle"></i> Status</th>
+                        <th><i class="fas fa-cogs"></i> Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($promoCodes as $p)
+                        <tr>
+                            <td><strong>{{ $p->code }}</strong></td>
+                            <td>
+                                {{ $p->type === 'percent' ? ($p->value . '%') : ('Rp ' . number_format($p->value,0,',','.')) }}
+                                @if($p->min_purchase) <br><small style="color:#64748b;">Min: Rp {{ number_format($p->min_purchase,0,',','.') }}</small> @endif
+                                @if($p->max_discount) <br><small style="color:#64748b;">Max: Rp {{ number_format($p->max_discount,0,',','.') }}</small> @endif
+                            </td>
+                            <td>
+                                {{ $p->starts_at ? $p->starts_at->format('d M Y') : '-' }}<br>
+                                <small style="color:#64748b;">s/d {{ $p->ends_at ? $p->ends_at->format('d M Y') : '-' }}</small>
+                            </td>
+                            <td>
+                                {{ is_null($p->usage_limit) ? '∞' : $p->usage_limit }}<br>
+                                <small style="color:#64748b;">Terpakai: {{ $p->used_count }}</small>
+                            </td>
+                            <td>
+                                <span class="status-badge {{ $p->is_active ? 'status-success' : 'status-failed' }}">
+                                    {{ $p->is_active ? 'Aktif' : 'Nonaktif' }}
+                                </span>
+                            </td>
+                            <td>
+                                <a href="{{ route('admin.promocodes.edit', $p) }}" class="btn btn-warning" style="padding:0.4rem 0.8rem;font-size:0.8rem;">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                                <form action="{{ route('admin.promocodes.destroy', $p) }}" method="POST" onsubmit="return confirm('Hapus promo ini?')" style="display:inline;margin-left:0.5rem;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn-logout" style="padding:0.4rem 0.8rem;font-size:0.8rem;">
+                                        <i class="fas fa-trash"></i> Hapus
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            @endif
+        </div>
 
-            <div class="pager">
-                <div class="muted">Halaman {{ $promoCodes->currentPage() }} dari {{ $promoCodes->lastPage() }}</div>
-                <div class="pagination" aria-label="Pagination">
-                    @if($promoCodes->onFirstPage())
-                        <span class="page disabled">&laquo;</span>
+        @if($promoCodes->hasPages())
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:2rem;">
+            <div style="color:#64748b;">Menampilkan {{ $promoCodes->count() }} dari {{ $promoCodes->total() }} promo</div>
+            <div style="display:flex;gap:0.5rem;">
+                @if($promoCodes->onFirstPage())
+                    <span style="padding:0.5rem 1rem;border:1px solid rgba(99,102,241,0.2);border-radius:6px;color:#cbd5e1;">&laquo;</span>
+                @else
+                    <a href="{{ $promoCodes->previousPageUrl() }}" style="padding:0.5rem 1rem;border:1px solid rgba(99,102,241,0.2);border-radius:6px;color:#6366f1;text-decoration:none;">&laquo;</a>
+                @endif
+
+                @for ($i = max(1, $promoCodes->currentPage() - 2); $i <= min($promoCodes->lastPage(), $promoCodes->currentPage() + 2); $i++)
+                    @if ($i == $promoCodes->currentPage())
+                        <span style="padding:0.5rem 1rem;border:1px solid rgba(99,102,241,0.3);border-radius:6px;background:rgba(99,102,241,0.1);color:#6366f1;font-weight:600;">{{ $i }}</span>
                     @else
-                        <a href="{{ $promoCodes->previousPageUrl() }}" class="page">&laquo;</a>
+                        <a href="{{ $promoCodes->url($i) }}" style="padding:0.5rem 1rem;border:1px solid rgba(99,102,241,0.2);border-radius:6px;color:#64748b;text-decoration:none;">{{ $i }}</a>
                     @endif
+                @endfor
 
-                    @for ($i = 1; $i <= $promoCodes->lastPage(); $i++)
-                        @if ($i == $promoCodes->currentPage())
-                            <span class="page current">{{ $i }}</span>
-                        @else
-                            <a href="{{ $promoCodes->url($i) }}" class="page">{{ $i }}</a>
-                        @endif
-                    @endfor
-
-                    @if ($promoCodes->hasMorePages())
-                        <a href="{{ $promoCodes->nextPageUrl() }}" class="page">&raquo;</a>
-                    @else
-                        <span class="page disabled">&raquo;</span>
-                    @endif
-                </div>
+                @if ($promoCodes->hasMorePages())
+                    <a href="{{ $promoCodes->nextPageUrl() }}" style="padding:0.5rem 1rem;border:1px solid rgba(99,102,241,0.2);border-radius:6px;color:#6366f1;text-decoration:none;">&raquo;</a>
+                @else
+                    <span style="padding:0.5rem 1rem;border:1px solid rgba(99,102,241,0.2);border-radius:6px;color:#cbd5e1;">&raquo;</span>
+                @endif
             </div>
         </div>
+        @endif
     </div>
 </body>
 </html>
