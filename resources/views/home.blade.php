@@ -306,16 +306,16 @@
         }
 
         .action-card:nth-child(1) {
-            border-color: rgba(37, 99, 235, 0.5);
+            border-color: rgba(6, 182, 212, 0.5);
         }
 
         .action-card:nth-child(1):hover {
-            border-color: #2563eb;
-            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.4);
+            border-color: #06b6d4;
+            box-shadow: 0 12px 30px rgba(6, 182, 212, 0.4);
         }
 
         .action-card:nth-child(1)::before {
-            background: linear-gradient(90deg, #2563eb, #3b82f6);
+            background: linear-gradient(90deg, #06b6d4, #22d3ee);
         }
 
         .action-card:nth-child(2) {
@@ -332,29 +332,29 @@
         }
 
         .action-card:nth-child(3) {
-            border-color: rgba(30, 58, 138, 0.5);
+            border-color: rgba(6, 182, 212, 0.5);
         }
 
         .action-card:nth-child(3):hover {
-            border-color: #1e3a8a;
-            box-shadow: 0 12px 30px rgba(30, 58, 138, 0.4);
+            border-color: #06b6d4;
+            box-shadow: 0 12px 30px rgba(6, 182, 212, 0.4);
         }
 
         .action-card:nth-child(3)::before {
-            background: linear-gradient(90deg, #1e3a8a, #1e40af);
+            background: linear-gradient(90deg, #06b6d4, #22d3ee);
         }
 
         .action-card:nth-child(4) {
-            border-color: rgba(59, 130, 246, 0.5);
+            border-color: rgba(6, 182, 212, 0.5);
         }
 
         .action-card:nth-child(4):hover {
-            border-color: #3b82f6;
-            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.4);
+            border-color: #06b6d4;
+            box-shadow: 0 12px 30px rgba(6, 182, 212, 0.4);
         }
 
         .action-card:nth-child(4)::before {
-            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            background: linear-gradient(90deg, #06b6d4, #22d3ee);
         }
 
         .action-card:hover {
