@@ -866,7 +866,7 @@
         <div class="section">
             <h2><i class="fas fa-fire"></i> Game Populer</h2>
             <div class="game-grid">
-                @forelse ($games as $game)
+                @forelse ($games->take(6) as $game)
                     <div class="game-card">
                         <div class="game-card-image">
                             <span class="game-badge">POPULAR</span>
