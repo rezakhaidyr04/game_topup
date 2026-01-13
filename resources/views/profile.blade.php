@@ -401,11 +401,11 @@
                 
                 <div class="profile-stats">
                     <div class="stat-item">
-                        <span class="stat-value">0</span>
+                        <span class="stat-value">{{ $totalTransactions ?? 0 }}</span>
                         <span class="stat-label">Transaksi</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-value">Rp 0</span>
+                        <span class="stat-value">Rp {{ number_format($totalSpent ?? 0, 0, ',', '.') }}</span>
                         <span class="stat-label">Total Belanja</span>
                     </div>
                 </div>

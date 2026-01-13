@@ -25,7 +25,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     Route::get('/profile', function () {
-        return view('profile');
+        $user = auth()->user();
+        $totalTransactions = \App\Models\Transaction::where('user_id', $user->id)
+            ->where('status', 'success')
+            ->count();
+        $totalSpent = \App\Models\Transaction::where('user_id', $user->id)
+            ->where('status', 'success')
+            ->sum('price');
+        
+        return view('profile', compact('totalTransactions', 'totalSpent'));
     })->name('profile');
     Route::get('/settings', function () {
         return view('settings');
