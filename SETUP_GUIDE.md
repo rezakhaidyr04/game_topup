@@ -137,6 +137,10 @@ Buat akun baru lewat halaman register untuk testing:
 - Cek apakah database `game_topup` sudah ada
 - Check `.env` file untuk DB config yang benar
 
+### Game tidak muncul / "Belum ada game tersedia"
+- Jalankan: `php artisan db:seed --class=GameSeeder`
+- Atau jalankan ulang semuanya: `php artisan migrate:fresh --seed`
+
 ### CSS/JS tidak load
 - Buka Developer Console (F12)
 - Cek apakah ada error
