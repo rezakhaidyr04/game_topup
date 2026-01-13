@@ -6,7 +6,7 @@
     <title>Top Up Game - Game TopUp</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
         * {
@@ -16,147 +16,304 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #0F172A;
-            color: #F8FAFC;
+            font-family: 'Rajdhani', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #0f0f23 100%);
+            color: #e2e8f0;
             min-height: 100vh;
         }
 
         header {
-            background: #020617;
-            border-bottom: 1px solid #334155;
-            padding: 1rem 2rem;
+            background: linear-gradient(135deg, rgba(15, 15, 35, 0.98) 0%, rgba(26, 26, 62, 0.98) 100%);
+            border-bottom: 1px solid rgba(37, 99, 235, 0.3);
+            padding: 1.2rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 24px rgba(30, 58, 138, 0.2);
+            backdrop-filter: blur(20px);
+            position: relative;
+            z-index: 10;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.6), rgba(6, 182, 212, 0.6), transparent);
+            opacity: 0.8;
         }
 
         .logo-header {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #38BDF8;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #3b82f6, #2563eb, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.7rem;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 15px rgba(37, 99, 235, 0.3));
+        }
+
+        .logo-header:hover {
+            background: linear-gradient(135deg, #60a5fa, #3b82f6, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 25px rgba(37, 99, 235, 0.5));
+        }
+
+        .logo-header i {
+            color: #3b82f6;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 10px rgba(37, 99, 235, 0.5));
+        }
+
+        .logo-header:hover i {
+            color: #60a5fa;
+            transform: rotate(15deg);
+            filter: drop-shadow(0 0 15px rgba(37, 99, 235, 0.8));
         }
 
         .nav-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
             align-items: center;
         }
 
         .nav-links a {
-            color: #F8FAFC;
+            color: #cbd5e1;
             text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
         }
 
         .nav-links a:hover {
-            color: #38BDF8;
+            color: #60a5fa;
         }
 
         .user-greeting {
-            color: #94A3B8;
-            font-size: 0.95rem;
+            color: #cbd5e1;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.15), rgba(37, 99, 235, 0.15));
+            border-radius: 8px;
+            border: 1px solid rgba(37, 99, 235, 0.4);
         }
 
         .btn-logout {
-            background: #38BDF8;
-            color: #020617;
-            padding: 0.6rem 1.2rem;
-            border: none;
-            border-radius: 6px;
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: #fff;
+            padding: 0.7rem 1.5rem;
+            border: 1px solid rgba(37, 99, 235, 0.5);
+            border-radius: 8px;
             cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-weight: 700;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
         }
 
         .btn-logout:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(56, 189, 248, 0.3);
-            background: #6366F1;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border-color: rgba(59, 130, 246, 0.6);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 2rem auto;
-            padding: 0 1.5rem;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: #F8FAFC;
-            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #fff, #60a5fa, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            filter: drop-shadow(0 2px 10px rgba(37, 99, 235, 0.3));
             text-align: center;
         }
 
         .games-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 2rem;
             margin-bottom: 2rem;
         }
 
         .game-card {
-            background: #1E293B;
-            border: 1px solid #334155;
-            border-radius: 10px;
-            padding: 1.5rem;
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%);
+            border: 2px solid rgba(37, 99, 235, 0.4);
+            border-radius: 20px;
+            padding: 0;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(15px);
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(37, 99, 235, 0.03) 10px,
+                rgba(37, 99, 235, 0.03) 20px
+            );
+            opacity: 0;
+            transition: opacity 0.5s;
+            z-index: 1;
+        }
+
+        .game-card::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb, #06b6d4, #3b82f6);
+            background-size: 200% 200%;
+            border-radius: 20px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.5s;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .game-card:hover::before {
+            opacity: 1;
+        }
+
+        .game-card:hover::after {
+            opacity: 0.6;
         }
 
         .game-card:hover {
-            transform: translateY(-6px);
-            border-color: #38BDF8;
-            box-shadow: 0 12px 28px rgba(56, 189, 248, 0.2);
+            transform: translateY(-15px) scale(1.03);
+            border-color: rgba(59, 130, 246, 0.8);
+            box-shadow: 0 20px 50px rgba(37, 99, 235, 0.4),
+                        0 0 30px rgba(6, 182, 212, 0.3);
         }
 
         .game-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.8rem;
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
             display: block;
+            color: #64748b;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 2;
+            padding: 2rem 1.5rem 1.5rem;
+        }
+
+        .game-card:hover .icon {
+            transform: scale(1.15);
+            color: #94a3b8;
+            filter: drop-shadow(0 8px 20px rgba(100, 116, 139, 0.6));
         }
 
         .game-card h3 {
-            color: #F8FAFC;
-            margin-bottom: 0.4rem;
-            font-size: 0.95rem;
-            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-size: 1.15rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-card:hover h3 {
+            color: #fff;
+            transform: translateX(2px);
         }
 
         .game-card p {
-            color: #94A3B8;
-            font-size: 0.8rem;
+            color: #94a3b8;
+            font-size: 0.85rem;
             margin-bottom: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0 1.5rem;
+        }
+
+        .game-card:hover p {
+            color: #cbd5e1;
         }
 
         .btn-select, .btn-topup {
-            background: #38BDF8;
-            color: #020617;
-            padding: 0.6rem 1rem;
-            border: none;
-            border-radius: 6px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: #fff;
+            padding: 0.9rem 1.5rem;
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 0.8rem;
-            font-weight: 600;
+            font-size: 0.9rem;
+            font-weight: 700;
             transition: all 0.3s ease;
-            width: 100%;
+            width: calc(100% - 3rem);
             text-decoration: none;
             display: inline-block;
+            margin: 0 1.5rem 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
         }
 
         .btn-select:hover, .btn-topup:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(56, 189, 248, 0.3);
-            background: #6366F1;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.5);
+            border-color: rgba(59, 130, 246, 0.8);
         }
 
         .section-title {
@@ -238,6 +395,13 @@
             border-color: #38BDF8;
         }
 
+        @media (max-width: 1200px) {
+            .games-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -253,7 +417,14 @@
             }
 
             .games-grid {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .games-grid {
+                grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
             }
         }
