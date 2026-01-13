@@ -20,7 +20,7 @@ class TopUpController extends Controller
 
     public function index()
     {
-        $games = Game::with('topups')->get();
+        $games = Game::with('topups')->take(6)->get();
         $userTransactions = $this->topUpService->getUserTransactions(Auth::id());
         
         return view('topup.index', compact('games', 'userTransactions'));
