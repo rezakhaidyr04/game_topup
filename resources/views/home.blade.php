@@ -369,6 +369,7 @@
             transition: all 0.4s ease;
             position: relative;
             z-index: 1;
+            color: #06b6d4;
         }
 
         .action-card:hover .icon {
@@ -458,8 +459,8 @@
 
         .game-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 2rem;
             margin-bottom: 3rem;
             padding: 1rem 0;
         }
@@ -837,25 +838,25 @@
             
             <div class="quick-actions">
                 <div class="action-card">
-                    <div class="icon">💳</div>
+                    <div class="icon"><i class="fas fa-wallet"></i></div>
                     <h3>Top Up Sekarang</h3>
                     <p>Isi saldo game Anda dengan cepat</p>
                     <a href="{{ route('topup.index') }}">Mulai Topup →</a>
                 </div>
                 <div class="action-card">
-                    <div class="icon">💰</div>
+                    <div class="icon"><i class="fas fa-coins"></i></div>
                     <h3>Lihat Saldo</h3>
                     <p>Cek saldo akun Anda</p>
                     <a href="{{ route('saldo.index') }}">Lihat Saldo →</a>
                 </div>
                 <div class="action-card">
-                    <div class="icon">📊</div>
+                    <div class="icon"><i class="fas fa-history"></i></div>
                     <h3>Riwayat</h3>
                     <p>Lihat histori pembelian</p>
                     <a href="{{ route('topup.index') }}">Lihat Riwayat →</a>
                 </div>
                 <div class="action-card">
-                    <div class="icon">⚙️</div>
+                    <div class="icon"><i class="fas fa-sliders-h"></i></div>
                     <h3>Pengaturan</h3>
                     <p>Kelola akun Anda</p>
                     <a href="{{ url('/settings') }}">Pengaturan →</a>
