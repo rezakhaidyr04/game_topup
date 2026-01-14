@@ -615,14 +615,6 @@ Catatan: Tekankan maintainability: ada service layer, request validation, dan te
 - Monitoring semua transaksi pengguna
 - Akses penuh ke data sistem
 
-### Untuk Developer
-- Struktur kode yang bersih dan terorganisir
-- Service layer untuk business logic
-- Form request validation
-- Authorization policies
-- Database transactions untuk keamanan
-- Eager loading untuk optimasi query
-
 ## 🔧 Teknologi yang Digunakan
 
 - **Framework**: Laravel 11
