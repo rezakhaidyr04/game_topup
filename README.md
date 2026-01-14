@@ -2,6 +2,523 @@
 
 Aplikasi web untuk platform penjualan top-up game online yang dibangun dengan Laravel dan Blade Templating Engine.
 
+---
+
+## 📖 Penjelasan Lengkap Kode
+
+### 🏗️ Arsitektur Aplikasi
+
+Aplikasi ini menggunakan arsitektur **MVC (Model-View-Controller)** dengan tambahan **Service Layer** untuk memisahkan business logic dari controller.
+
+```
+┌─────────────┐     ┌──────────────┐     ┌─────────────┐     ┌──────────┐
+│   Request   │ ──► │  Controller  │ ──► │   Service   │ ──► │  Model   │
+└─────────────┘     └──────────────┘     └─────────────┘     └──────────┘
+                           │                                       │
+                           ▼                                       ▼
+                    ┌──────────────┐                        ┌──────────┐
+                    │    View      │                        │ Database │
+                    └──────────────┘                        └──────────┘
+```
+
+---
+
+### 📂 Struktur Folder & Penjelasan File
+
+```
+app/
+├── Http/
+│   ├── Controllers/
+│   │   ├── AuthController.php      → Mengatur login, register, logout
+│   │   ├── TopUpController.php     → Mengatur proses top-up game
+│   │   ├── HomeController.php      → Mengatur halaman dashboard user
+│   │   └── Admin/                  → Controller khusus admin
+│   │       ├── DashboardController.php
+│   │       ├── TopUpController.php
+│   │       └── PromoCodeController.php
+│   │
+│   ├── Requests/
+│   │   └── PurchaseTopUpRequest.php → Validasi input pembelian
+│   │
+│   └── Middleware/
+│       └── AdminMiddleware.php     → Cek apakah user adalah admin
+│
+├── Models/
+│   ├── User.php          → Model pengguna (dengan saldo)
+│   ├── Game.php          → Model game (ML, PUBG, FF, dll)
+│   ├── TopUp.php         → Model paket top-up (Diamond, UC, dll)
+│   ├── Transaction.php   → Model transaksi pembelian
+│   └── PromoCode.php     → Model kode promo/voucher
+│
+├── Services/
+│   └── TopUpService.php  → Business logic pembelian top-up
+│
+└── Policies/
+    └── TransactionPolicy.php → Authorization (siapa boleh lihat transaksi)
+```
+
+---
+
+### 🔍 Penjelasan Model (Database)
+
+#### 1️⃣ **User.php** - Model Pengguna
+```php
+// Atribut yang bisa diisi
+protected $fillable = [
+    'name',      // Nama pengguna
+    'email',     // Email (unik)
+    'password',  // Password (di-hash otomatis)
+    'balance',   // Saldo pengguna (untuk beli top-up)
+    'role',      // Role: 'user' atau 'admin'
+];
+
+// Method untuk menambah saldo
+public function addBalance(float $amount): bool
+
+// Method untuk mengurangi saldo
+public function deductBalance(float $amount): bool
+
+// Method untuk cek saldo cukup
+public function hasSufficientBalance(float $amount): bool
+```
+
+#### 2️⃣ **Game.php** - Model Game
+```php
+// Atribut
+protected $fillable = [
+    'name',          // Nama game (Mobile Legends, PUBG, dll)
+    'icon',          // Path gambar icon
+    'currency_type', // Tipe mata uang (Diamond, UC, CP, dll)
+    'min_price',     // Harga minimum paket
+    'max_price',     // Harga maksimum paket
+];
+
+// Relasi: 1 Game punya banyak TopUp
+public function topups() {
+    return $this->hasMany(TopUp::class);
+}
+```
+
+#### 3️⃣ **TopUp.php** - Model Paket Top-Up
+```php
+// Atribut
+protected $fillable = [
+    'game_id',  // ID game (foreign key)
+    'name',     // Nama paket (50 Diamond, 100 UC, dll)
+    'amount',   // Jumlah yang didapat
+    'price',    // Harga dalam Rupiah
+];
+
+// Relasi: TopUp milik 1 Game
+public function game() {
+    return $this->belongsTo(Game::class);
+}
+```
+
+#### 4️⃣ **Transaction.php** - Model Transaksi
+```php
+// Status transaksi
+const STATUS_PENDING = 'pending';   // Menunggu
+const STATUS_SUCCESS = 'success';   // Berhasil
+const STATUS_FAILED = 'failed';     // Gagal
+
+// Atribut
+protected $fillable = [
+    'user_id',        // ID user yang beli
+    'game_id',        // ID game yang dibeli
+    'topup_id',       // ID paket top-up
+    'promo_code_id',  // ID promo (jika pakai)
+    'promo_code',     // Kode promo yang dipakai
+    'amount',         // Jumlah item yang dibeli
+    'original_price', // Harga asli sebelum diskon
+    'discount',       // Jumlah diskon
+    'price',          // Harga akhir setelah diskon
+    'status',         // Status transaksi
+    'game_account',   // ID akun game pembeli
+];
+```
+
+#### 5️⃣ **PromoCode.php** - Model Kode Promo
+```php
+// Tipe diskon
+const TYPE_PERCENT = 'percent';  // Diskon persentase (10%, 20%, dll)
+const TYPE_FIXED = 'fixed';      // Diskon nominal (Rp 5.000, Rp 10.000, dll)
+
+// Atribut
+protected $fillable = [
+    'code',          // Kode promo (HEMAT10, DISKON50K, dll)
+    'type',          // Tipe: 'percent' atau 'fixed'
+    'value',         // Nilai diskon (10 = 10% atau 10000 = Rp 10.000)
+    'min_purchase',  // Minimal pembelian untuk pakai promo
+    'max_discount',  // Maksimal diskon (untuk tipe percent)
+    'starts_at',     // Tanggal mulai berlaku
+    'ends_at',       // Tanggal berakhir
+    'usage_limit',   // Batas penggunaan
+    'used_count',    // Jumlah sudah dipakai
+    'is_active',     // Status aktif/nonaktif
+];
+```
+
+---
+
+### ⚙️ Penjelasan Service Layer
+
+#### **TopUpService.php** - Logic Pembelian
+
+```php
+class TopUpService
+{
+    /**
+     * Proses pembelian top-up dengan langkah:
+     * 1. Validasi game ada
+     * 2. Validasi paket top-up ada
+     * 3. Validasi & hitung promo (jika ada)
+     * 4. Cek saldo user cukup
+     * 5. Kurangi saldo user
+     * 6. Buat record transaksi
+     * 7. Return transaksi
+     */
+    public function processPurchase(array $data): Transaction
+    {
+        // Gunakan DB Transaction untuk keamanan
+        return DB::transaction(function () use ($data) {
+            
+            // 1. Ambil data game
+            $game = Game::findOrFail($data['game_id']);
+            
+            // 2. Ambil data paket top-up
+            $topup = TopUp::where('id', $data['topup_id'])
+                ->where('game_id', $game->id)
+                ->firstOrFail();
+            
+            // 3. Hitung harga
+            $originalPrice = $topup->price;
+            $discount = 0;
+            
+            // 4. Jika ada promo code
+            if (!empty($data['promo_code'])) {
+                // Validasi promo:
+                // - Apakah aktif?
+                // - Apakah dalam periode berlaku?
+                // - Apakah minimal pembelian terpenuhi?
+                // - Apakah kuota masih ada?
+                
+                // Hitung diskon berdasarkan tipe
+                if ($promo->type === 'percent') {
+                    $discount = $originalPrice * $promo->value / 100;
+                } else {
+                    $discount = $promo->value;
+                }
+                
+                // Batasi diskon maksimal
+                if ($promo->max_discount) {
+                    $discount = min($discount, $promo->max_discount);
+                }
+            }
+            
+            // 5. Hitung harga akhir
+            $finalPrice = $originalPrice - $discount;
+            
+            // 6. Cek & kurangi saldo
+            $user->deductBalance($finalPrice);
+            
+            // 7. Buat transaksi
+            return Transaction::create([...]);
+        });
+    }
+}
+```
+
+**Kenapa pakai `DB::transaction()`?**
+- Jika ada error di tengah proses, semua perubahan dibatalkan
+- Mencegah data tidak konsisten (misal: saldo terpotong tapi transaksi gagal)
+
+---
+
+### 🎮 Penjelasan Controller
+
+#### **TopUpController.php**
+
+```php
+class TopUpController extends Controller
+{
+    // Dependency Injection - Service diinject otomatis
+    private TopUpService $topUpService;
+
+    public function __construct(TopUpService $topUpService)
+    {
+        $this->topUpService = $topUpService;
+    }
+
+    // GET /topup - Tampilkan daftar game
+    public function index()
+    {
+        $games = Game::with('topups')->take(6)->get();
+        return view('topup.index', compact('games'));
+    }
+
+    // GET /topup/game/{game} - Detail game & paket
+    public function show(Game $game)
+    {
+        $topups = $game->topups;
+        return view('topup.show', compact('game', 'topups'));
+    }
+
+    // POST /topup/purchase - Proses pembelian
+    public function purchase(PurchaseTopUpRequest $request)
+    {
+        try {
+            $transaction = $this->topUpService->processPurchase(
+                $request->validated()
+            );
+            return redirect()->route('topup.receipt', $transaction);
+        } catch (Exception $e) {
+            return back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    // GET /topup/receipt/{transaction} - Struk transaksi
+    public function receipt(Transaction $transaction)
+    {
+        // Cek authorization - hanya pemilik yang boleh lihat
+        $this->authorize('view', $transaction);
+        return view('topup.receipt', compact('transaction'));
+    }
+}
+```
+
+---
+
+### ✅ Penjelasan Request Validation
+
+#### **PurchaseTopUpRequest.php**
+
+```php
+class PurchaseTopUpRequest extends FormRequest
+{
+    // Aturan validasi input
+    public function rules(): array
+    {
+        return [
+            'game_id' => 'required|exists:games,id',
+            'topup_id' => 'required|exists:top_ups,id',
+            'game_account' => 'required|string|max:100',
+            'promo_code' => 'nullable|string|max:50',
+        ];
+    }
+
+    // Pesan error custom (bahasa Indonesia)
+    public function messages(): array
+    {
+        return [
+            'game_id.required' => 'Game harus dipilih',
+            'topup_id.required' => 'Paket top-up harus dipilih',
+            'game_account.required' => 'ID akun game harus diisi',
+        ];
+    }
+}
+```
+
+---
+
+### 🔐 Penjelasan Authorization Policy
+
+#### **TransactionPolicy.php**
+
+```php
+class TransactionPolicy
+{
+    // Cek apakah user boleh melihat transaksi
+    public function view(User $user, Transaction $transaction): bool
+    {
+        // Hanya pemilik transaksi yang boleh lihat
+        return $user->id === $transaction->user_id;
+    }
+}
+```
+
+**Cara pakai di Controller:**
+```php
+$this->authorize('view', $transaction);
+// Jika bukan pemilik, akan return 403 Forbidden
+```
+
+---
+
+### 🗄️ Penjelasan Database Migration
+
+#### **create_transactions_table.php**
+
+```php
+Schema::create('transactions', function (Blueprint $table) {
+    $table->id();                                    // Primary key
+    $table->foreignId('user_id')->constrained();    // Foreign key ke users
+    $table->foreignId('game_id')->constrained();    // Foreign key ke games
+    $table->foreignId('topup_id')->constrained();   // Foreign key ke top_ups
+    $table->foreignId('promo_code_id')->nullable(); // FK ke promo_codes (opsional)
+    $table->string('promo_code')->nullable();       // Kode promo yang dipakai
+    $table->integer('amount');                      // Jumlah item
+    $table->integer('original_price');              // Harga asli
+    $table->integer('discount')->default(0);        // Diskon
+    $table->integer('price');                       // Harga akhir
+    $table->string('status')->default('pending');   // Status transaksi
+    $table->string('game_account');                 // ID akun game
+    $table->timestamps();                           // created_at, updated_at
+});
+```
+
+---
+
+### 🌐 Penjelasan Routes
+
+#### **routes/web.php**
+
+```php
+// ==================== PUBLIC ROUTES ====================
+Route::get('/', [LandingController::class, 'index']);
+
+// ==================== AUTH ROUTES ====================
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLogin']);
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::get('/register', [AuthController::class, 'showRegister']);
+    Route::post('/register', [AuthController::class, 'register']);
+});
+
+// ==================== USER ROUTES (HARUS LOGIN) ====================
+Route::middleware('auth')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/home', [HomeController::class, 'index']);
+    
+    // Top-Up Routes
+    Route::get('/topup', [TopUpController::class, 'index']);
+    Route::get('/topup/game/{game}', [TopUpController::class, 'show']);
+    Route::post('/topup/purchase', [TopUpController::class, 'purchase']);
+    Route::get('/topup/receipt/{transaction}', [TopUpController::class, 'receipt']);
+});
+
+// ==================== ADMIN ROUTES ====================
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('/', [AdminDashboardController::class, 'index']);
+    Route::resource('topups', AdminTopUpController::class);
+    Route::resource('promocodes', AdminPromoCodeController::class);
+});
+```
+
+---
+
+### 🔄 Alur Kerja Aplikasi
+
+#### **Alur Pembelian Top-Up:**
+
+```
+┌──────────────────────────────────────────────────────────────────────────┐
+│                         ALUR PEMBELIAN TOP-UP                            │
+└──────────────────────────────────────────────────────────────────────────┘
+
+1. USER BUKA HALAMAN TOP-UP
+   └─► GET /topup
+       └─► TopUpController@index()
+           └─► Tampilkan daftar game
+
+2. USER PILIH GAME
+   └─► GET /topup/game/1 (Mobile Legends)
+       └─► TopUpController@show()
+           └─► Tampilkan paket top-up
+
+3. USER ISI FORM PEMBELIAN
+   ┌─────────────────────────────────────┐
+   │  Game: Mobile Legends               │
+   │  Paket: 100 Diamond - Rp 25.000     │
+   │  ID Akun: 123456789                 │
+   │  Promo: HEMAT10 (opsional)          │
+   │                                     │
+   │  [BELI SEKARANG]                    │
+   └─────────────────────────────────────┘
+
+4. SUBMIT FORM
+   └─► POST /topup/purchase
+       └─► PurchaseTopUpRequest (validasi)
+           └─► TopUpController@purchase()
+               └─► TopUpService@processPurchase()
+                   │
+                   ├─► Validasi game & paket
+                   ├─► Validasi promo code (jika ada)
+                   ├─► Hitung diskon
+                   ├─► Cek saldo user
+                   ├─► Kurangi saldo
+                   └─► Buat transaksi
+
+5. TAMPILKAN STRUK
+   └─► GET /topup/receipt/1
+       └─► TopUpController@receipt()
+           └─► Tampilkan detail transaksi
+
+   ┌─────────────────────────────────────┐
+   │  ✅ TRANSAKSI BERHASIL              │
+   │                                     │
+   │  No. Transaksi: TXN-001             │
+   │  Game: Mobile Legends               │
+   │  Paket: 100 Diamond                 │
+   │  ID Akun: 123456789                 │
+   │                                     │
+   │  Harga Asli: Rp 25.000              │
+   │  Diskon (HEMAT10): -Rp 2.500        │
+   │  ─────────────────────              │
+   │  Total Bayar: Rp 22.500             │
+   └─────────────────────────────────────┘
+```
+
+---
+
+### 💡 Konsep Penting dalam Kode
+
+#### 1️⃣ **Eloquent ORM**
+```php
+// Tanpa Eloquent (SQL mentah):
+$result = DB::select('SELECT * FROM games WHERE id = ?', [1]);
+
+// Dengan Eloquent (lebih mudah):
+$game = Game::find(1);
+$game = Game::where('name', 'Mobile Legends')->first();
+```
+
+#### 2️⃣ **Eager Loading** (Mencegah N+1 Query Problem)
+```php
+// ❌ BURUK - Query banyak (N+1 problem)
+$games = Game::all();
+foreach ($games as $game) {
+    echo $game->topups->count(); // Query per game!
+}
+
+// ✅ BAIK - Query sedikit (eager loading)
+$games = Game::with('topups')->get();
+foreach ($games as $game) {
+    echo $game->topups->count(); // Sudah di-load!
+}
+```
+
+#### 3️⃣ **Mass Assignment Protection**
+```php
+// Di Model, tentukan field yang boleh diisi:
+protected $fillable = ['name', 'email', 'password'];
+
+// Field lain tidak bisa diisi mass assignment
+// Mencegah hacker inject field seperti 'role' atau 'balance'
+```
+
+#### 4️⃣ **Database Transaction**
+```php
+DB::transaction(function () {
+    // Semua query di sini atomic
+    // Jika ada error, semuanya rollback
+    $user->deductBalance(100000);
+    Transaction::create([...]);
+});
+```
+
+---
+
 ## 📋 Tentang Proyek
 
 **Game TopUp** adalah platform modern untuk pembelian top-up game dengan fitur-fitur lengkap seperti:

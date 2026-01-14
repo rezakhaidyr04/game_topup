@@ -327,21 +327,43 @@
             <p>Atur harga paket top up untuk setiap game</p>
         </div>
 
-        <div class="toolbar" style="display:flex;gap:1rem;align-items:center;justify-content:space-between;margin-bottom:2rem;">
-            <div class="filters" style="display:flex;gap:0.5rem;align-items:center;">
-                <input name="q" value="{{ request('q') }}" class="input" placeholder="Cari paket, game, atau harga..." style="padding:0.5rem;border:1px solid rgba(99,102,241,0.2);border-radius:8px;background:rgba(255,255,255,0.8);color:#475569;">
-                <select name="game_id" class="input" style="padding:0.5rem;border:1px solid rgba(99,102,241,0.2);border-radius:8px;background:rgba(255,255,255,0.8);color:#475569;">
-                    <option value="">Semua Game</option>
-                    @foreach($games as $g)
-                        <option value="{{ $g->id }}" {{ request('game_id') == $g->id ? 'selected' : '' }}>{{ $g->name }}</option>
-                    @endforeach
-                </select>
-                <input name="min_price" value="{{ request('min_price') }}" class="input" placeholder="Harga min" type="number" min="0" style="padding:0.5rem;border:1px solid rgba(99,102,241,0.2);border-radius:8px;background:rgba(255,255,255,0.8);color:#475569;">
-                <input name="max_price" value="{{ request('max_price') }}" class="input" placeholder="Harga max" type="number" min="0" style="padding:0.5rem;border:1px solid rgba(99,102,241,0.2);border-radius:8px;background:rgba(255,255,255,0.8);color:#475569;">
-                <button type="submit" class="btn" style="padding:0.5rem 1rem;">Filter</button>
-                <a href="{{ route('admin.topups.index') }}" class="btn" style="background:transparent;border:1px solid rgba(99,102,241,0.2);color:#64748b;">Reset</a>
-            </div>
-            <a href="{{ route('admin.topups.create') }}" class="btn">
+        <div class="toolbar" style="display:flex;gap:1rem;align-items:flex-start;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;">
+            <form action="{{ route('admin.topups.index') }}" method="GET" class="filter-form" style="display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap;flex:1;">
+                <div style="position:relative;flex:1;min-width:200px;">
+                    <i class="fas fa-search" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:0.85rem;"></i>
+                    <input name="q" value="{{ request('q') }}" class="input" placeholder="Cari paket, game..." style="padding:0.75rem 0.75rem 0.75rem 38px;border:2px solid rgba(99,102,241,0.15);border-radius:12px;background:rgba(255,255,255,0.95);color:#475569;width:100%;font-size:0.9rem;transition:all 0.3s ease;outline:none;" onfocus="this.style.borderColor='rgba(99,102,241,0.5)';this.style.boxShadow='0 0 0 4px rgba(99,102,241,0.1)'" onblur="this.style.borderColor='rgba(99,102,241,0.15)';this.style.boxShadow='none'">
+                </div>
+                <div style="position:relative;min-width:160px;">
+                    <i class="fas fa-gamepad" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:0.85rem;z-index:1;"></i>
+                    <select name="game_id" class="input" style="padding:0.75rem 0.75rem 0.75rem 38px;border:2px solid rgba(99,102,241,0.15);border-radius:12px;background:rgba(255,255,255,0.95);color:#475569;font-size:0.9rem;cursor:pointer;transition:all 0.3s ease;outline:none;appearance:none;padding-right:35px;min-width:160px;" onfocus="this.style.borderColor='rgba(99,102,241,0.5)';this.style.boxShadow='0 0 0 4px rgba(99,102,241,0.1)'" onblur="this.style.borderColor='rgba(99,102,241,0.15)';this.style.boxShadow='none'">
+                        <option value="">Semua Game</option>
+                        @foreach($games as $g)
+                            <option value="{{ $g->id }}" {{ request('game_id') == $g->id ? 'selected' : '' }}>{{ $g->name }}</option>
+                        @endforeach
+                    </select>
+                    <i class="fas fa-chevron-down" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:0.7rem;pointer-events:none;"></i>
+                </div>
+                <div style="display:flex;gap:0.5rem;align-items:center;">
+                    <div style="position:relative;">
+                        <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:0.75rem;font-weight:600;">Rp</span>
+                        <input name="min_price" value="{{ request('min_price') }}" class="input" placeholder="Min" type="number" min="0" style="padding:0.75rem 0.75rem 0.75rem 32px;border:2px solid rgba(99,102,241,0.15);border-radius:12px;background:rgba(255,255,255,0.95);color:#475569;width:110px;font-size:0.9rem;transition:all 0.3s ease;outline:none;" onfocus="this.style.borderColor='rgba(99,102,241,0.5)';this.style.boxShadow='0 0 0 4px rgba(99,102,241,0.1)'" onblur="this.style.borderColor='rgba(99,102,241,0.15)';this.style.boxShadow='none'">
+                    </div>
+                    <span style="color:#94a3b8;font-weight:600;">-</span>
+                    <div style="position:relative;">
+                        <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:0.75rem;font-weight:600;">Rp</span>
+                        <input name="max_price" value="{{ request('max_price') }}" class="input" placeholder="Max" type="number" min="0" style="padding:0.75rem 0.75rem 0.75rem 32px;border:2px solid rgba(99,102,241,0.15);border-radius:12px;background:rgba(255,255,255,0.95);color:#475569;width:110px;font-size:0.9rem;transition:all 0.3s ease;outline:none;" onfocus="this.style.borderColor='rgba(99,102,241,0.5)';this.style.boxShadow='0 0 0 4px rgba(99,102,241,0.1)'" onblur="this.style.borderColor='rgba(99,102,241,0.15)';this.style.boxShadow='none'">
+                    </div>
+                </div>
+                <div style="display:flex;gap:0.5rem;">
+                    <button type="submit" style="background:linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);color:#fff;padding:0.75rem 1.5rem;border-radius:12px;border:none;font-weight:600;font-size:0.9rem;cursor:pointer;display:inline-flex;align-items:center;gap:0.5rem;box-shadow:0 4px 15px rgba(99,102,241,0.3);transition:all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(99,102,241,0.4)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 15px rgba(99,102,241,0.3)'">
+                        <i class="fas fa-filter"></i> Filter
+                    </button>
+                    <a href="{{ route('admin.topups.index') }}" style="background:rgba(255,255,255,0.9);border:2px solid rgba(99,102,241,0.2);color:#64748b;padding:0.75rem 1.25rem;border-radius:12px;text-decoration:none;font-weight:600;font-size:0.9rem;display:inline-flex;align-items:center;gap:0.5rem;transition:all 0.3s ease;" onmouseover="this.style.borderColor='rgba(239,68,68,0.4)';this.style.color='#ef4444';this.style.background='rgba(239,68,68,0.05)'" onmouseout="this.style.borderColor='rgba(99,102,241,0.2)';this.style.color='#64748b';this.style.background='rgba(255,255,255,0.9)'">
+                        <i class="fas fa-times"></i> Reset
+                    </a>
+                </div>
+            </form>
+            <a href="{{ route('admin.topups.create') }}" class="btn" style="white-space:nowrap;">
                 <i class="fas fa-plus"></i> Tambah Paket
             </a>
         </div>
