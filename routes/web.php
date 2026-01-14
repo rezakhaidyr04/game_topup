@@ -4,10 +4,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TopUpController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SaldoController;
+use App\Models\Game;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    $games = Game::all();
+    return view('welcome', compact('games'));
 })->name('welcome');
 
 // Auth Routes

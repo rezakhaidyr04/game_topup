@@ -228,43 +228,285 @@
 
             .games-grid {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-                gap: 1.5rem;
-                margin-top: 3rem;
+                grid-template-columns: repeat(6, 1fr);
+                gap: 2rem;
+                margin-bottom: 3rem;
+                padding: 1rem 0;
             }
 
             .game-card {
-                background: #1E293B;
-                padding: 1.5rem;
-                border-radius: 10px;
+                background: linear-gradient(145deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%);
+                border: 2px solid rgba(37, 99, 235, 0.4);
+                border-radius: 20px;
+                padding: 0;
                 text-align: center;
-                transition: all 0.3s ease;
+                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
                 cursor: pointer;
-                border: 1px solid #334155;
+                position: relative;
+                overflow: hidden;
+                backdrop-filter: blur(15px);
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+
+            /* Diagonal stripe pattern */
+            .game-card::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(37, 99, 235, 0.03) 10px,
+                    rgba(37, 99, 235, 0.03) 20px
+                );
+                opacity: 0;
+                transition: opacity 0.5s;
+                z-index: 1;
+            }
+
+            /* Glowing border effect with blue gradient */
+            .game-card::after {
+                content: '';
+                position: absolute;
+                inset: -2px;
+                background: linear-gradient(135deg, #3b82f6, #2563eb, #06b6d4, #3b82f6);
+                background-size: 200% 200%;
+                border-radius: 20px;
+                opacity: 0;
+                z-index: -1;
+                transition: opacity 0.5s;
+                animation: gradientShift 3s ease infinite;
+            }
+
+            @keyframes gradientShift {
+                0%, 100% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+            }
+
+            .game-card:hover::before {
+                opacity: 1;
+            }
+
+            .game-card:hover::after {
+                opacity: 0.6;
             }
 
             .game-card:hover {
-                border-color: #38BDF8;
-                transform: translateY(-6px);
-                box-shadow: 0 12px 28px rgba(56, 189, 248, 0.2);
+                transform: translateY(-15px) scale(1.03);
+                border-color: rgba(59, 130, 246, 0.8);
+                box-shadow: 0 20px 50px rgba(37, 99, 235, 0.4),
+                            0 0 30px rgba(6, 182, 212, 0.3);
             }
 
-            .game-icon {
-                font-size: 2.5rem;
-                margin-bottom: 1rem;
+            /* Game card image container */
+            .game-card-image {
+                width: 100%;
+                height: 160px;
+                background: linear-gradient(135deg, rgba(30, 58, 138, 0.2), rgba(37, 99, 235, 0.2), rgba(6, 182, 212, 0.2));
+                border-radius: 18px 18px 0 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                position: relative;
+                margin-bottom: 0;
+            }
+
+            .game-card-image::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.8) 100%);
+                z-index: 1;
+                pointer-events: none;
+            }
+
+            /* Game image wrapper */
+            .game-image-wrapper {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 1.5rem;
+                position: relative;
+                z-index: 2;
+            }
+
+            .game-image-wrapper img {
+                max-width: 100%;
+                max-height: 100%;
+                width: auto;
+                height: auto;
+                object-fit: contain;
+                filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .game-card:hover .game-image-wrapper img {
+                transform: scale(1.1);
+                filter: drop-shadow(0 8px 20px rgba(100, 116, 139, 0.6));
+            }
+
+            /* Default icon style when no image */
+            .game-icon-default {
+                font-size: 4.5rem;
+                color: #64748b;
+                filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                position: relative;
+                z-index: 2;
+            }
+
+            .game-card:hover .game-icon-default {
+                transform: scale(1.15);
+                color: #94a3b8;
+                filter: drop-shadow(0 8px 20px rgba(100, 116, 139, 0.6));
+            }
+
+            /* Badge for popular/trending */
+            .game-badge {
+                position: absolute;
+                top: 12px;
+                right: 12px;
+                background: linear-gradient(135deg, #2563eb, #1e40af);
+                color: #fff;
+                padding: 0.35rem 0.9rem;
+                border-radius: 20px;
+                font-size: 0.65rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 1.2px;
+                z-index: 10;
+                border: 1px solid rgba(59, 130, 246, 0.6);
+                box-shadow: 0 2px 10px rgba(37, 99, 235, 0.5);
+                backdrop-filter: blur(10px);
+            }
+
+            .game-card-content {
+                padding: 1rem 1.2rem 1.2rem;
+                position: relative;
+                z-index: 2;
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
             }
 
             .game-card h4 {
-                font-size: 1rem;
-                color: #F8FAFC;
+                color: #fff;
                 margin-bottom: 0.4rem;
-                font-weight: 600;
+                margin-top: 0;
+                font-size: 0.85rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 1.1px;
+                transition: all 0.3s ease;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+                line-height: 1.3;
+            }
+
+            .game-card:hover h4 {
+                color: #fff;
+                transform: translateX(2px);
             }
 
             .game-card p {
-                color: #94A3B8;
+                color: #94a3b8;
+                font-size: 0.8rem;
+                margin-bottom: 0.8rem;
+                margin-top: 0;
+                font-weight: 500;
+                transition: color 0.3s ease;
+                line-height: 1.3;
+            }
+
+            .game-card:hover p {
+                color: #cbd5e1;
+            }
+
+            /* Game info bar */
+            .game-info {
+                display: flex;
+                justify-content: center;
+                gap: 0.8rem;
+                margin-bottom: 0.9rem;
+                font-size: 0.7rem;
+                color: #64748b;
+            }
+
+            .game-info span {
+                display: flex;
+                align-items: center;
+                gap: 0.3rem;
+            }
+
+            .game-info i {
                 font-size: 0.85rem;
-                margin-bottom: 0;
+            }
+
+            .btn-topup {
+                background: linear-gradient(135deg, #3b82f6, #2563eb);
+                color: #fff;
+                padding: 0.7rem 1.1rem;
+                border: 1px solid rgba(59, 130, 246, 0.5);
+                border-radius: 10px;
+                cursor: pointer;
+                font-size: 0.73rem;
+                font-weight: 800;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                width: 100%;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.3rem;
+                text-transform: uppercase;
+                letter-spacing: 0.9px;
+                position: relative;
+                overflow: hidden;
+                z-index: 1;
+                box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+                line-height: 1.3;
+                flex-shrink: 0;
+            }
+
+            .btn-topup::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+                transition: left 0.5s;
+            }
+
+            .btn-topup:hover::before {
+                left: 100%;
+            }
+
+            .btn-topup::after {
+                content: '→';
+                margin-left: 0.25rem;
+                transition: transform 0.3s ease;
+            }
+
+            .btn-topup:hover {
+                transform: translateY(-2px);
+                background: linear-gradient(135deg, #60a5fa, #3b82f6);
+                border-color: rgba(96, 165, 250, 0.8);
+                box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5),
+                            0 0 20px rgba(59, 130, 246, 0.4);
+            }
+
+            .btn-topup:hover::after {
+                transform: translateX(4px);
             }
 
             /* Pricing Section */
@@ -499,6 +741,11 @@
                     align-items: center;
                 }
 
+                .games-grid {
+                    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                    gap: 1.5rem;
+                }
+
                 .cta h2 {
                     font-size: 1.6rem;
                 }
@@ -625,36 +872,46 @@
                 <h2 class="section-title">Game yang Tersedia</h2>
                 <p class="section-subtitle">Ribuan game siap untuk di-top up dengan mudah</p>
                 <div class="games-grid">
-                    <div class="game-card">
-                        <div class="game-icon"><img src="{{ asset('images/games/ml.png') }}" alt="Mobile Legends" style="width: 100%; height: 100%; object-fit: contain;"></div>
-                        <h4>Mobile Legends</h4>
-                        <p>Diamonds & Bonus</p>
-                    </div>
-                    <div class="game-card">
-                        <div class="game-icon"><img src="{{ asset('images/games/PUBG.png') }}" alt="PUBG Mobile" style="width: 100%; height: 100%; object-fit: contain;"></div>
-                        <h4>PUBG Mobile</h4>
-                        <p>UC & Battle Pass</p>
-                    </div>
-                    <div class="game-card">
-                        <div class="game-icon"><img src="{{ asset('images/games/FF.png') }}" alt="Free Fire" style="width: 100%; height: 100%; object-fit: contain;"></div>
-                        <h4>Free Fire</h4>
-                        <p>Diamond & Voucher</p>
-                    </div>
-                    <div class="game-card">
-                        <div class="game-icon"><img src="{{ asset('images/games/AOV.png') }}" alt="Arena of Valor" style="width: 100%; height: 100%; object-fit: contain;"></div>
-                        <h4>Arena of Valor</h4>
-                        <p>Valor Pass & Voucher</p>
-                    </div>
-                    <div class="game-card">
-                        <div class="game-icon"><img src="{{ asset('images/games/HONKAI.png') }}" alt="Honkai Star Rail" style="width: 100%; height: 100%; object-fit: contain;"></div>
-                        <h4>Honkai Star Rail</h4>
-                        <p>Crystal & Pass</p>
-                    </div>
-                    <div class="game-card">
-                        <div class="game-icon"><img src="{{ asset('images/games/GENSHIN.png') }}" alt="Genshin Impact" style="width: 100%; height: 100%; object-fit: contain;"></div>
-                        <h4>Genshin Impact</h4>
-                        <p>Genesis Crystal</p>
-                    </div>
+                    @forelse ($games->take(6) as $game)
+                        <div class="game-card">
+                            <div class="game-card-image">
+                                <span class="game-badge">POPULAR</span>
+                                @php
+                                    $gameImages = [
+                                        'Mobile Legends' => 'ml.png',
+                                        'PUBG Mobile' => 'PUBG.png',
+                                        'Free Fire' => 'FF.png',
+                                        'Genshin Impact' => 'GENSHIN.png',
+                                        'Call of Duty Mobile' => 'COD.png',
+                                        'Arena of Valor' => 'AOV.png',
+                                        'Honkai Star Rail' => 'HONKAI.png',
+                                        'Valorant' => 'valo.png',
+                                    ];
+                                    $imgFile = $gameImages[$game->name] ?? null;
+                                @endphp
+                                
+                                @if ($imgFile && file_exists(public_path('images/games/' . $imgFile)))
+                                    <div class="game-image-wrapper">
+                                        <img src="{{ asset('images/games/' . $imgFile) }}" alt="{{ $game->name }}">
+                                    </div>
+                                @else
+                                    <div class="game-icon-default">{{ $game->icon }}</div>
+                                @endif
+                            </div>
+                            
+                            <div class="game-card-content">
+                                <h4>{{ $game->name }}</h4>
+                                <p>Top Up {{ $game->currency_type }}</p>
+                                <div class="game-info">
+                                    <span><i class="fas fa-bolt"></i> Instan</span>
+                                    <span><i class="fas fa-shield-alt"></i> Aman</span>
+                                </div>
+                                <a href="{{ route('topup.show', $game) }}" class="btn-topup">Topup Sekarang</a>
+                            </div>
+                        </div>
+                    @empty
+                        <p style="color: #94a3b8; grid-column: 1/-1; text-align: center; padding: 3rem;">Belum ada game tersedia</p>
+                    @endforelse
                 </div>
             </div>
         </section>
