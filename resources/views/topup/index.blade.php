@@ -209,6 +209,7 @@
             opacity: 0;
             transition: opacity 0.5s;
             z-index: 1;
+            pointer-events: none;
         }
 
         .game-card::after {
@@ -222,6 +223,7 @@
             z-index: -1;
             transition: opacity 0.5s;
             animation: gradientShift 3s ease infinite;
+            pointer-events: none;
         }
 
         @keyframes gradientShift {
@@ -263,6 +265,8 @@
         }
 
         .game-card h3 {
+            position: relative;
+            z-index: 2;
             color: #fff;
             margin-bottom: 0.5rem;
             font-size: 1.15rem;
@@ -279,6 +283,8 @@
         }
 
         .game-card p {
+            position: relative;
+            z-index: 2;
             color: #94a3b8;
             font-size: 0.85rem;
             margin-bottom: 1rem;
@@ -292,6 +298,8 @@
         }
 
         .btn-select, .btn-topup {
+            position: relative;
+            z-index: 2;
             background: linear-gradient(135deg, #3b82f6, #2563eb);
             color: #fff;
             padding: 0.9rem 1.5rem;
@@ -438,6 +446,7 @@
         </div>
         <div class="nav-links">
             <span class="user-greeting">Halo, {{ auth()->user()->name }}! 👋</span>
+            <a href="{{ route('home') }}">Beranda</a>
             <a href="{{ route('topup.index') }}">Top Up</a>
             <a href="{{ route('profile') }}" class="profile-icon-link" title="Profile Saya">
                 {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
@@ -454,7 +463,7 @@
 
         <div class="games-grid">
             @forelse ($games as $game)
-                <div class="game-card">
+                <div class="game-card" data-href="{{ route('topup.show', $game) }}" role="link" tabindex="0">
                     @php
                         $gameImages = [
                             'Mobile Legends' => 'ml.png',
@@ -514,5 +523,24 @@
             </div>
         @endif
     </div>
+
+    <script>
+        // Make the entire game card clickable (keyboard accessible too)
+        document.querySelectorAll('.game-card[data-href]').forEach((card) => {
+            const href = card.getAttribute('data-href');
+
+            card.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, form, input, select, textarea')) return;
+                window.location.href = href;
+            });
+
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    window.location.href = href;
+                }
+            });
+        });
+    </script>
 </body>
 </html>
