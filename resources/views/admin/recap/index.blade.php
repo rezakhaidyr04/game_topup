@@ -706,36 +706,39 @@
         <!-- Monthly Tab Content -->
         <div id="monthly-content" class="tab-content">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
-                <h2 style="margin:0">Bulan Ini</h2>
+                <h2 style="margin:0;color:#6366f1;font-weight:700;">Bulan Ini</h2>
                 <span style="color:#94a3b8">{{ $startOfMonth->format('d M Y') }} - {{ $endOfMonth->format('d M Y') }}</span>
             </div>
 
             <!-- Summary Cards -->
-            <div class="cards">
+            <div class="cards" style="margin:2rem 0;">
                 <div class="card">
-                    <div class="stat-label">Total Transaksi</div>
-                    <div class="stat-value" style="color:#38bdf8">{{ number_format($monthlyTotalTransactions) }}</div>
+                    <div class="card-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <div class="card-label">Total Transaksi</div>
+                    <div class="card-value" style="color:#38bdf8">{{ number_format($monthlyTotalTransactions) }}</div>
                 </div>
                 <div class="card">
-                    <div class="stat-label">Total Pendapatan</div>
-                    <div class="stat-value" style="color:#38bdf8">Rp {{ number_format($monthlyTotalRevenue, 0, ',', '.') }}</div>
+                    <div class="card-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="card-label">Total Pendapatan</div>
+                    <div class="card-value" style="color:#38bdf8">Rp {{ number_format($monthlyTotalRevenue, 0, ',', '.') }}</div>
                 </div>
                 <div class="card">
-                    <div class="stat-label">Rata-rata per Transaksi</div>
-                    <div class="stat-value" style="color:#38bdf8">Rp {{ $monthlyTotalTransactions > 0 ? number_format($monthlyTotalRevenue / $monthlyTotalTransactions, 0, ',', '.') : 0 }}</div>
+                    <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="card-label">Rata-rata per Transaksi</div>
+                    <div class="card-value" style="color:#38bdf8">Rp {{ $monthlyTotalTransactions > 0 ? number_format($monthlyTotalRevenue / $monthlyTotalTransactions, 0, ',', '.') : 0 }}</div>
                 </div>
             </div>
 
             <!-- Status Transaksi -->
-            <div class="section-title">
+            <h2 class="section-title">
                 <i class="fas fa-chart-pie"></i>
                 Status Transaksi
-            </div>
-            <div class="section">
-                <div style="display:flex;gap:2rem;flex-wrap:wrap">
+            </h2>
+            <div class="table-container">
+                <div style="display:flex;gap:2rem;flex-wrap:wrap;padding:1.5rem;">
                     @foreach($monthlyStatusStats as $stat)
                         <div style="flex:1;min-width:150px">
-                            <div style="font-size:24px;font-weight:700;color:#f1f5f9">{{ $stat->count }}</div>
+                            <div style="font-size:24px;font-weight:700;color:#6366f1">{{ $stat->count }}</div>
                             <div style="font-size:14px;color:#94a3b8;text-transform:capitalize">{{ $stat->status }}</div>
                         </div>
                     @endforeach
@@ -747,23 +750,42 @@
                 <i class="fas fa-trophy"></i>
                 Top 10 Game Terpopuler
             </div>
-            <div class="section">
+            <div class="table-container">
                 @if($monthlyTopGames->isEmpty())
-                    <p style="color:#94a3b8">Belum ada data transaksi bulan ini</p>
+                    <p style="color:#94a3b8;text-align:center;padding:2rem;">Belum ada data transaksi bulan ini</p>
                 @else
-                    @foreach($monthlyTopGames as $index => $item)
-                        <div style="margin-bottom:1rem">
-                            <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-                                <span style="font-weight:600">{{ $index + 1 }}. {{ $item->game->name ?? 'Unknown' }}</span>
-                                <span style="color:#94a3b8">{{ $item->count }} transaksi • Rp {{ number_format($item->revenue, 0, ',', '.') }}</span>
-                            </div>
-                            <div class="chart-bar">
-                                <div class="chart-fill monthly" style="width:{{ ($item->count / $monthlyTopGames->max('count')) * 100 }}%">
-                                    {{ $monthlyTotalTransactions > 0 ? number_format(($item->count / $monthlyTotalTransactions) * 100, 1) : 0 }}%
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Game</th>
+                                <th style="text-align:right">Transaksi</th>
+                                <th style="text-align:right">Pendapatan</th>
+                                <th style="text-align:right">% dari Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($monthlyTopGames as $index => $item)
+                                <tr>
+                                    <td>
+                                        @if($index === 0)
+                                            🥇
+                                        @elseif($index === 1)
+                                            🥈
+                                        @elseif($index === 2)
+                                            🥉
+                                        @else
+                                            {{ $index + 1 }}
+                                        @endif
+                                    </td>
+                                    <td style="font-weight:600">{{ $item->game->name ?? 'Unknown' }}</td>
+                                    <td style="text-align:right">{{ $item->count }}</td>
+                                    <td style="text-align:right;color:#38bdf8;font-weight:600">Rp {{ number_format($item->revenue, 0, ',', '.') }}</td>
+                                    <td style="text-align:right">{{ $monthlyTotalTransactions > 0 ? number_format(($item->count / $monthlyTotalTransactions) * 100, 1) : 0 }}%</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 @endif
             </div>
 
