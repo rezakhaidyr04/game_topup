@@ -315,7 +315,7 @@
                     <i class="fas fa-chart-line"></i> Rekap
                 </a>
                 <a href="{{ route('admin.promocodes.index') }}" class="btn">
-                    <i class="fas fa-tags"></i> Promo
+                    <i class="fas fa-tags"></i> Kelola Promo
                 </a>
             </div>
         </div>

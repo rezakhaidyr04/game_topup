@@ -523,6 +523,24 @@
             color: #8b5cf6;
         }
 
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -564,28 +582,30 @@
                     <i class="fas fa-home"></i> Dashboard
                 </a>
                 <a href="{{ route('admin.topups.index') }}" class="btn">
-                    <i class="fas fa-coins"></i> Kelola Harga
+                    <i class="fas fa-coins"></i> Kelola TopUp
                 </a>
-                <a href="{{ route('admin.promocodes.index') }}" class="btn btn-warning">
-                    <i class="fas fa-tags"></i> Promo
+                <a href="{{ route('admin.promocodes.index') }}" class="btn">
+                    <i class="fas fa-tags"></i> Kelola Promo
                 </a>
             </div>
         </div>
     </header>
 
     <div class="container">
-        <h1 style="color:#f8fafc;margin-bottom:0.5rem">📊 Rekapan Transaksi</h1>
-        <p style="color:#94a3b8;margin-top:0">Lihat performa transaksi mingguan dan bulanan</p>
+        <div class="welcome-section">
+            <h1>📊 Rekapan Transaksi</h1>
+            <p>Lihat performa transaksi mingguan dan bulanan</p>
+        </div>
 
         <div style="display:flex;gap:0.5rem;margin:1.5rem 0;border-bottom:2px solid rgba(99,102,241,0.15);padding-bottom:1rem;">
-            <button class="tab active" onclick="switchTab('weekly')" style="padding:0.75rem 1.5rem;background:transparent;border:none;color:#64748b;font-weight:600;cursor:pointer;border-bottom:3px solid transparent;transition:all 0.2s;">📅 Rekap Mingguan</button>
-            <button class="tab" onclick="switchTab('monthly')" style="padding:0.75rem 1.5rem;background:transparent;border:none;color:#64748b;font-weight:600;cursor:pointer;border-bottom:3px solid transparent;transition:all 0.2s;">📆 Rekap Bulanan</button>
+            <button class="tab active" onclick="switchTab('weekly')" style="padding:0.75rem 1.5rem;background:transparent;border:none;color:#6366f1;font-weight:600;cursor:pointer;border-bottom:3px solid #6366f1;transition:all 0.2s;">📅 Rekap Mingguan</button>
+            <button class="tab" onclick="switchTab('monthly')" style="padding:0.75rem 1.5rem;background:transparent;border:none;color:#94a3b8;font-weight:600;cursor:pointer;border-bottom:3px solid transparent;transition:all 0.2s;">📆 Rekap Bulanan</button>
         </div>
 
         <!-- Weekly Tab Content -->
         <div id="weekly-content" class="tab-content active">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
-                <h2 style="margin:0">Minggu Ini</h2>
+                <h2 style="margin:0;color:#6366f1;font-weight:700;">Minggu Ini</h2>
                 <span style="color:#94a3b8">{{ $startOfWeek->format('d M Y') }} - {{ $endOfWeek->format('d M Y') }}</span>
             </div>
 
@@ -795,16 +815,20 @@
                 content.classList.remove('active');
             });
             
-            // Remove active class from all tabs
+            // Remove active class from all tabs and reset styling
             document.querySelectorAll('.tab').forEach(tab => {
                 tab.classList.remove('active');
+                tab.style.color = '#94a3b8';
+                tab.style.borderBottomColor = 'transparent';
             });
             
             // Show selected tab content
             document.getElementById(tabName + '-content').classList.add('active');
             
-            // Add active class to clicked tab
+            // Add active class to clicked tab with styling
             event.target.classList.add('active');
+            event.target.style.color = '#6366f1';
+            event.target.style.borderBottomColor = '#6366f1';
         }
     </script>
 </body>
